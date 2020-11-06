@@ -72,7 +72,7 @@ for(let i=0; i<a7.length; ++i)
 {
     if( i > 0 && i % 2 == 0 )
     {
-        sum += a6[i];
+        sum += a7[i];
         cnt += 1;
     }
 }
