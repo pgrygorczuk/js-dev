@@ -1,0 +1,4 @@
+Dodawanie liczb 5 i 9 daje w wyniku 14
+Odejmowanie liczb 5 i 9 daje w wyniku -4
+Mnożenie liczb 5 i 9 daje w wyniku 45
+Dzielenie liczb 5 i 9 daje w wyniku 0.5555555555555556
