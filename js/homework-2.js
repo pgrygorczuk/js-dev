@@ -41,7 +41,7 @@ function f4( elements )
 function f5( elements )
 {
     let e = elements, result = [];
-    for(let i=0; i+1<elements.length; i+=2)
+    for(let i=0; i+1<e.length; i+=2)
     {
         result.push( e[i] + e[i+1] );
     }
@@ -52,13 +52,12 @@ function f5( elements )
 //    Create a function that based on given array return new array in pattern [a,b,c,d,e] -> [a+b, c+d, e+e].
 function f6( elements )
 {
-    // TODO
     let e = elements, result = [];
-    for(let i=0; i+1<elements.length; i+=2)
+    for(let i=0; i+1<e.length; i+=2)
     {
         result.push( e[i] + e[i+1] );
     }
-    
+    result.push( e[e.length-1] * 2 );
     return result;
 }
 
@@ -66,7 +65,8 @@ function f6( elements )
 function f7( elements )
 {
     let getRandom = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1)) + min };
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
     return elements[ getRandom(0, elements.length-1) ];
 }
 
@@ -88,31 +88,42 @@ function f8( elements, num_of_attempts )
 //    This takes place as long as there are elements in source array.
 function f9( elements )
 {
-    let numbers = [];
-    let getRandomIndex = () => {};
-    while( elements )
+    let numbers = [], r, n;
+    let getRandom = (min, max) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+    while( elements.length > 0 )
     {
-        break;
+        r = getRandom( 0, elements.length-1 );
+        n = elements.splice( r, 1 );
+        numbers.push( n[0] );
     }
+    return numbers;
 }
 
 // 10) Create a function that on given array will perform operation of adding or subtracting elements.
 // Operation is to be chosen at random. And return a result.[a,b,c,d] =>(((a+-b)+-c)+-d).
 function f10( elements )
 {
-
+    let r = Math.round( Math.random() ), result = elements[0];
+    for(let i=1; i<elements.length; ++i)
+    {
+        r ? result += elements[i] : result -= elements[i];
+    }
+    return result;
 }
 
 // 11) Create a function that will return the current day name in Polish.
-function f11( elements )
+function f11()
 {
     let today = new Date();
+    return ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'][today.getDay()];
 }
 
 // 12) Create a function that tells us how many days till Friday.
-function f12( elements )
+function f12()
 {
-
+    return 5 - new Date().getDay();
 }
 
 // 13) Create a function that take two numbers and return the object with 4 fields. Result on 4 basic arithmetic operations.
@@ -133,5 +144,12 @@ function f13( a, b )
 // console.log( f5( array ) );
 // console.log( f6( array ) );
 // console.log( f7( array ) );
-console.log( f8( array, 10 ) );
+// console.log( f8( array, 10 ) );
+
+//console.log( f9 ( array ) );
+console.log( f10( array ) );
+
+console.log( f11() );
+console.log( f12() );
+console.log( f13(1, 2) );
 
