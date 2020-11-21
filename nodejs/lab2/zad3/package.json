@@ -1,0 +1,19 @@
+{
+  "name": "zad3",
+  "version": "1.0.0",
+  "description": "zad3",
+  "main": "app.js",
+  "dependencies": {
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}

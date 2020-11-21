@@ -14,4 +14,7 @@ let
     b = args['b'],
     op = args['operator'];
 
+//console.log(args);
+//console.log(process.argv);
+
 console.log( eval( a + op + b ) );
