@@ -78,6 +78,7 @@ function f8( elements, num_of_attempts )
     for(let i=0; i<num_of_attempts; ++i)
     {
         rand_number = f7(elements);
+        //rand_number = elements[Math.floor(Math.random() * elements.length)];
         if( min == undefined || rand_number < min )
             min = rand_number;
     }
