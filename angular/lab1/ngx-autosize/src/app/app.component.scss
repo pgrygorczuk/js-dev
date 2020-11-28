@@ -1,0 +1,22 @@
+table {
+  margin: 0 auto;
+}
+
+.resize-with-window {
+  textarea {
+    width: 80%;
+  }
+}
+
+textarea {
+  min-width: 450px;
+
+  &.forceImportant {
+    height: auto !important
+  }
+
+  &.top-and-bottom-borders {
+    border-top-width:15px;
+    border-bottom-width:15px
+  }
+}
