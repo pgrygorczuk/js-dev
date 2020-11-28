@@ -9,7 +9,7 @@ class Transaction
         this.details = {
             type    : details.Type,
             company : details.company,
-            date    : new Date( ddate[2], ddate[1], ddate[0] ),
+            date    : new Date( ddate[2], ddate[1]-1, ddate[0] ),
         };
     }
 }
@@ -24,6 +24,7 @@ class Data
     {
         let data = require( jsonFile );
         return data.map( function(item, index, array){
+            // Pobralem za duzo danych.
             return new Transaction(item.index, item._id, item.cost, item.detailsOfPayent);
         } );
     }
@@ -61,8 +62,8 @@ class Data
 //   }
 
 let data = new Data();
-//console.log( data.totalMoney(2014) );
+console.log( data.totalMoney(2014) );
 //console.log( data.getMoneyBy( (item) => item.details.company ) );
 //console.log( data.getMoneyBy( (item) => item.details.type ) );
 //console.log( data.getMoneyBy( (item) => item.details.date.getMonth()+1 ) );
-console.log( data.getMoneyBy( (item) => item.details.date.getDay() ) );
+// console.log( data.getMoneyBy( (item) => item.details.date.getDay() ) );
