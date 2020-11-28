@@ -1,0 +1,39 @@
+<!-- Zaczynamy z React -->
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+
+  <script type="module">
+    // Tu wykonamy polecenia(3-5) z ćwiczenia 1 z pomocą React
+    // Narazie nie bierzemy na warsztat JSX
+    // Zaimplementujemy logike wykorzystując surowe API React
+    // https://pl.reactjs.org/docs/react-without-jsx.html
+
+    // class Hello extends React.Component{
+    //   render(){
+    //     //element, proxy - zmienne, ktore wystawia api reakta, childrens
+    //     return React.createElement('div', null, );
+    //   };
+    // }
+
+    const spans = [
+      React.createElement('span', {children: "Witaj"}),
+      ' ',
+      React.createElement('span', {children: "świecie"}) ];
+    
+    const div = React.createElement('div', {
+      className: 'container',
+      children: spans,
+    });
+
+    ReactDOM.render(
+      //React.createElement(Hello, {}),
+      div,
+      document.getElementById('root')
+    );
+
+  </script>
+</body>
