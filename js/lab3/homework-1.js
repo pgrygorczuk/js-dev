@@ -33,7 +33,7 @@ let some_value = (function()
     {
         if( typeof value == "string" )
             value = reverseString( value );
-        else
+        else //TODO: if typeof number, else error: Cannot be reversed.
             value = value*(-1);
     }
 
