@@ -16,9 +16,15 @@
     //   );
     // }
 
-    const message = ({children, ...rest}) => { //dekonstrukcja
-      return <div className="message">{children}</div>;
-    };
+    //const message = ({children, ...rest}) => { //dekonstrukcja
+	/*const message = ([children, ...rest]) => { //dekonstrukcja
+		return <div className="message">{children}</div>;
+    };*/
+	
+	function message( arg )
+	{
+		return <div className="message">{arg}</div>;
+	}
 
     const element = (
       <div className="container">

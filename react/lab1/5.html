@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <script type="text/babel">
+    
+	function message( arg )
+	{
+		return <div className="message">{arg}</div>;
+	}
+	
+	function example( arg1, arg2 )
+	{
+		return 'a1' + arg1 + 'a2: ' + arg2;
+	}
+
+	function MyComponent( props )
+	{
+		let list = '';
+		for( let i=0; i<props.len; i+=1 )
+		{
+			list += `<li>${i}</li>`;
+		}
+		console.log(list);
+		return <ul>{list}</ul>;
+	}
+
+    const element = (
+      <div className="container">
+        <MyComponent var="10" len="3" />
+      </div>
+    );
+
+    ReactDOM.render(element, document.getElementById('root'));
+  </script>
+</body>
