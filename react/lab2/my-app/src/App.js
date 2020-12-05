@@ -1,8 +1,8 @@
 import "./App.css";
 import PropTypes from 'prop-types';
 
-function Box({ type='', color='white', children }) {
-  console.log( children );
+function Box({ type='', color='white', children })
+{
   return (
     <div className={`box box--${type}`} style={{backgroundColor: color}}>
       {children}
