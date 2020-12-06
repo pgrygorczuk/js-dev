@@ -1,0 +1,13 @@
+<h3>People in the room</h3>
+
+<input [(ngModel)]="name" name="name" type="text" placeholder="name"><br>
+<button (click)="onAdd()">Add</button>
+
+<h2>Currently in the room are:</h2>
+<button (click)="onClear()">Clear</button>
+
+<p *ngFor="let person of persons">
+  {{person}}
+  <button (click)="onClearPerson(person)">X</button>
+</p>
+

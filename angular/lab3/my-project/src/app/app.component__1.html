@@ -1,0 +1,8 @@
+<h3>Who are you?</h3>
+<form>
+  <input [(ngModel)]="name" name="name" type="text" placeholder="name"><br>
+  <input [(ngModel)]="familyName" name="surname" type="text" placeholder="family name"><br>
+  <button (click)="sayHello()">Hello</button>
+  <button (click)="sayBye()">Bye</button>
+</form>
+{{ name + familyName }}

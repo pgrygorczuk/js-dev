@@ -1,0 +1,19 @@
+<h3>People in the room</h3>
+
+<p [style.background-color]="color">
+  Max allowed: {{maxAllowed}}
+</p>
+<p>
+  Current number: {{counter}}
+</p>
+
+<label for="btn1">Someone enters the room</label>
+<button id="btn1" (click)="add()">+1</button>
+<br>
+<label for="btn1">Someone leaves the room</label>
+<button [disabled]="counter <= 0" id="btn2" (click)="sub()">-1</button>
+
+<h2 *ngIf="counter >= maxAllowed">
+  Max number reached!
+</h2>
+
