@@ -40,7 +40,7 @@ class Sudoku
             this.board[row][col] = 0; //undo move
             return false;
         }
-
+        
         return this.solve(nextRow, nextCol);
     }
     isSolved()
@@ -106,7 +106,7 @@ let example_3 = [
     [ 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
 ];
 
-let sudoku = new Sudoku(example_3);
+let sudoku = new Sudoku(example_1);
 
 sudoku.showBoard();
 sudoku.solve();

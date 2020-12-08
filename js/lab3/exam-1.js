@@ -1,32 +1,23 @@
 function EightBalls()
 {
-    function validate(input)
-    {
-        let
-            err = false,
-            min = Math.min(input);
-        if( input.length != 8 )
-            err = 'Only 8 balls are allowed.';
-        return err;
-    }
-
+    //x1(2) is a pair { index, value } or array of pairs
     function weightMachine(x1, x2)
     {
-        let x1_ = x1, x2_ = x2;
+        let x1_, x2_;
 
         if( Array.isArray(x1) )
             x1_ = x1.reduce( (acc, curr) => {
-                return { value: acc.value + curr.value };
-            });
-
-        x1_ = x1_.value;
+                return acc + curr.value;
+            }, 0);
+        else
+            x1_ = x1.value;
 
         if( Array.isArray(x2) )
             x2_ = x2.reduce( (acc, curr) => {
-                return { value: acc.value + curr.value };
-            });
-
-        x2_ = x2_.value;
+                return acc + curr.value;
+            }, 0);
+        else
+            x2_ = x2.value;
 
         if( x1_ > x2_ ) return 0;
         if( x2_ > x1_ ) return 1;
@@ -65,11 +56,10 @@ function EightBalls()
 
     function solve( balls )
     {
-        let group_1, group_2, group_3,
-            errors = validate( balls );
-        if( errors )
+        let group_1, group_2, group_3;
+        if( balls.length != 8 )
         {
-            console.log( errors );
+            console.log( 'Only 8 balls are allowed.' );
             return false;
         }
 
@@ -92,7 +82,7 @@ function EightBalls()
         {
             // compare balls from group 3
             result = weightMachine( group_3[0], group_3[1] );
-            return group_3[result].index;
+            return group_3[result].index; // <-
         }
     }
 

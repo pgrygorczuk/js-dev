@@ -46,7 +46,7 @@ class Card
 
 class Poker
 {
-    constructor(cards)
+    constructor(cards) //5 Cards
     {
         let card;
         this.cards = [];
@@ -71,7 +71,7 @@ class Poker
         // } ); // RETURN PROBLEM
         for(let item of this.cards)
         {
-            if( color == undefined )
+            if( color == undefined ) //first run
                 color = item.color;
             if( color != item.color )
                 return false;
@@ -131,7 +131,7 @@ class Poker
             return 'trójka';
         if( maxSameValues == 2 )
         {
-            if( counts.length == 3 )
+            if( counts.length == 3 ) //[2, 2, 1]
                 return 'dwie pary';
             else
                 return 'pair';
