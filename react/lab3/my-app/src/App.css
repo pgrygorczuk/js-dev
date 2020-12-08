@@ -1,0 +1,29 @@
+.box {
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.box--large {
+  width: 270px;
+  height: 270px;
+}
+.box--medium {
+  width: 180px;
+  height: 180px;
+}
+.box--small {
+  width: 90px;
+  height: 90px;
+}
+
+button
+{
+  width: 100%;
+  border: none;
+  padding: 8px;
+  margin-top: 16px;
+  color: white;
+  background-color: cornflowerblue;
+}
