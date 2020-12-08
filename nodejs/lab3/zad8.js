@@ -1,0 +1,1 @@
+// Rozbicie poprzedniego zadania na moduly
