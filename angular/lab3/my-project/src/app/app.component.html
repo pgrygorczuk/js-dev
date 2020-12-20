@@ -1,13 +1,25 @@
 <h3>People in the room</h3>
 
-<input [(ngModel)]="name" name="name" type="text" placeholder="name"><br>
+<p class="{{colorClass}}">Max number: {{maxNumber}}</p>
+<p>Current number: {{persons.length}}</p>
+
+<input [(ngModel)]="name" name="name" type="text" placeholder="name" required minlength="3">
+
+<select [(ngModel)]="preferredLang">
+  <option *ngFor="let item of prefs | keyvalue" [value]="item.key">{{item.value}}</option>
+</select>
+
 <button (click)="onAdd()">Add</button>
+<button (click)="onAddRandom()">Add random</button>
 
 <h2>Currently in the room are:</h2>
 <button (click)="onClear()">Clear</button>
 
-<p *ngFor="let person of persons">
-  {{person}}
+<p *ngFor="let person of persons; let i = index">
+  {{i+1}}. {{person.name}}, prefers {{prefs[person.preferredLang]}}
+  <button (click)="onChangePref(person)">Change</button>
   <button (click)="onClearPerson(person)">X</button>
 </p>
 
+<!-- https://stackoverflow.com/questions/35534959/access-key-and-value-of-object-using-ngfor -->
+<!-- https://edu.chrum.it/js_dev_ng/lecture_3.html -->
