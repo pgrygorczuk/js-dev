@@ -85,7 +85,7 @@ class Poker
         {
             if( prev == item.value )
                 count += 1;
-            else if( prev != undefined ) //not first run
+            else if( prev != undefined ) // not first run
             {
                 counts.push( count );
                 count = 1;
