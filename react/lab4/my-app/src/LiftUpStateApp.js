@@ -5,6 +5,14 @@ const scaleNames = {
     f: "Fahrenheitach",
 };
 
+function farenheitToCelsius(fahrenheit) {
+    return (fahrenheit - 32) / 1.8;
+}
+
+function celsiusToFahrenheit(celsius) {
+    return celsius * 1.8 + 32;
+}
+
 function BoilingVerdict(props)
 {
     if( props.celsius >= 100 ){
@@ -31,20 +39,20 @@ function TemperatureInput(props)
 function App()
 {
     const [celsius, setCelsius] = React.useState(0);
+    const [fahrenheit, setFahrenheit] = React.useState(0);
 
     return (
         <div>
             <TemperatureInput
                 scale="c"
                 value={celsius}
-                setTemperature = {setCelsius} />
+                setTemperature={setCelsius} />
             <br />
             <TemperatureInput
                 scale="f"
                 value={celsius}
-                setTemperature={setCelsius}
+                setTemperature={setFahrenheit}
             />
-            
             <BoilingVerdict celsius={parseFloat(celsius)} />
         </div>
     );
