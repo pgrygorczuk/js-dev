@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 function BoilingVerdict(props)
 {
     if( props.celsius >= 100 ){
@@ -7,21 +9,15 @@ function BoilingVerdict(props)
     }
 }
 
-
-
 function App()
 {
     const [temperature, setTemperature] = React.useState('');
-
-    const handleChange = (e) => {
-        setTemperature( e.target.value );
-    }
 
     return (
         <div>
             <input
                 value={temperature}
-                onChange={handleChange} />
+                onChange={e => setTemperature(e.target.value)} />
             <BoilingVerdict celsius={parseFloat(temperature)} />
         </div>
     );
