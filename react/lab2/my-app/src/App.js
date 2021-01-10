@@ -14,9 +14,9 @@ Box.propTypes = {
   type: PropTypes.string,
   color: PropTypes.string,
   children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-    PropTypes.array,
+	PropTypes.string,
+	PropTypes.object,
+	PropTypes.array,
   ]),
 }
 
