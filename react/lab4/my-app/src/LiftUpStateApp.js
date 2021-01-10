@@ -7,11 +7,22 @@ function BoilingVerdict(props)
     }
 }
 
+
+
 function App()
 {
+    const [temperature, setTemperature] = React.useState('');
+
+    const handleChange = (e) => {
+        setTemperature( e.target.value );
+    }
+
     return (
         <div>
-            <BoilingVerdict celsius={100} />
+            <input
+                value={temperature}
+                onChange={handleChange} />
+            <BoilingVerdict celsius={parseFloat(temperature)} />
         </div>
     );
 }
