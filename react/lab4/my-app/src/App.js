@@ -1,42 +1,76 @@
 import * as React from 'react';
 import './App.css';
 
-function UserForm()
+const scaleNames = {
+    c: 'Celsjuszach',
+    f: 'Fahrenheitach',
+};
+
+function farenheitToCelsius(fahrenheit) {
+    return ((fahrenheit - 32) * 5) / 9;
+}
+
+function celsiusToFahrenheit(celsius) {
+    return (celsius * 9) / 5 + 32;
+}
+
+function BoilingVerdict(props)
 {
-  const [username, setUsername] = React.useState('');
-  const [users, setUsers] = React.useState( [] );
-  //let users = [ '1', '2' ];
-
-  function onChangeUsername(e)
-  {
-    setUsername( e.target.value );
-  }
-
-  function onAdd(e)
-  {
-    //console.log( e.target.elements.username.value );
-    if( Boolean(username) )
-    {
-      setUsers( [...users, username] );
-      setUsername( '' );
+    if( props.celsius >= 100 ){
+        return <p>The water would boil.</p>;
+    }else{
+        return <p>The water would not boil.</p>;
     }
-  }
-
-  return (
-    <div className="App">
-      <input id="username" value={username} onChange={onChangeUsername} type="text" />
-      <button onClick={onAdd}>Add</button>
-      {users.map( (value, index) => {
-        return <p key={index}>{value}</p>;
-      })}
-    </div>
-  );
 }
 
-function App() {
-  return (
-    <UserForm />
-  );
+function TemperatureInput(props){
+    const handleChange = e =>{
+        props.onTemperatureChange( e.target.value );
+    };
+
+    //const { temperature, scale } = props;
+    const scale = props.scale;
+
+    return (
+        <fieldset>
+            <legend>Podaj temperaturę w {scaleNames[scale]}:</legend>
+            <input value={temperature}
+                onChange={handleChange} />
+        </fieldset>    
+    );
 }
 
-export default App;
+function Calculator()
+{
+    return (
+        <div>
+            <TemperatureInput
+                scale="c"
+                temperature={celsius}
+                onTemperatureChange={handleCelsiusChange}
+            />
+            <TemperatureInput
+                scale="f"
+                temperature="fahrenheit"
+                onTemperatureChange={handleFahrenheitChange}
+            />
+            <BoilingVerdict celsius={parseFloat(celsius)} />
+        </div>
+    );
+
+    // const [temperature, setTemperature] = React.useState('');
+
+    // let handleChange = (e) => {
+    //     setTemperature( e.target.value );
+    // }
+
+    // return (
+    //     <fieldset>
+    //         <legend>Podaj temperaturę w {scaleNames[scale]}:</legend>
+    //         <input
+    //         value={temperature}
+    //         onChange={this.handleChange}
+    //         <BoilingVerdict celsius={parseFloat(temperature)} />
+    //     </fieldset>
+    // );
+}
