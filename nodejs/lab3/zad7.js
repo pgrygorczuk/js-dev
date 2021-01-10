@@ -10,40 +10,25 @@ const userId = args['id'];
 
 // node zad7.js --id=1
 
-function getUrl(lat, lng){
+function getWeatherUrl(lat, lng){
     return `https://api.openweathermap.org/data/2.5/weather?appid=0ed761300a2725ca778c07831ae64d6e&lat=${lat}&lon=${lng}`;
 }
 
-function getCoords(userId){
-    console.log('Receiving user location ...');
-    const url = 'https://jsonplaceholder.typicode.com/users/' + userId;
-    request(url + args['id'], function (error, response, body) {
-        if( error || response.statusCode !== 200){
-            console.log('Receiving data failed.');
-            return false;
-        }
-        const user = JSON.parse( body );
-        console.log( `User location found: ${user.name}, [${user.address.geo.lat}, ${user.address.geo.lng}]` );
-        return {
-            lat: user.address.geo.lat,
-            lng: user.address.geo.lng,
-        }
-    });
-}
-
-function getWeather(userId)
-{
-    console.log( 'Reciving data ...' );
-    const coords = getCoords(userId);
-    const url = getUrl( coords.lat, coords.lng );
+let url = 'https://jsonplaceholder.typicode.com/users/' + userId;
+request(url, function (error, response, body) {
+    if( error || response.statusCode !== 200){
+        console.log('Receiving data failed.');
+        return false;
+    }
+    const user = JSON.parse( body );
+    console.log( `User location found: ${user.name}, [${user.address.geo.lat}, ${user.address.geo.lng}]` );
+    url = getWeatherUrl( user.address.geo.lat, user.address.geo.lng );
     request(url, function (error, response, body) {
         if( error || response.statusCode !== 200){
             console.log('Receiving data failed.');
             return false;
         }
         const data = JSON.parse( body );
-        return data;
+        console.log( data );
     });
-}
-
-console.log( getWeather(userId) );
+} );
