@@ -1,27 +1,25 @@
 const request = require('request');
 
-const getUsers = (ids) => {
-    let promises = [];
-    for(let id of ids)
-    {
-        promises.push( new Promise( (resolve, reject) => {
-            const url = 'https://jsonplaceholder.typicode.com/users/' + id;
-            request(url, function (error, response, body) {
-                if( error || response.statusCode !== 200)
-                    reject('Receiving data failed.');
-                resolve( JSON.parse( body ) );
-            });
-        } ) );
-    }
-    return promises;
+const getUser = (id) => {
+    return new Promise( (resolve, reject) => {
+        const url = 'https://jsonplaceholder.typicode.com/users/' + id;
+        request(url, function (error, response, body) {
+            if( error || response.statusCode !== 200)
+                reject('Receiving data failed.');
+            resolve( JSON.parse( body ) );
+        });
+    } );
 }
 
-let promises = getUsers( [2, 5, 7] );
+const ids = [ 2, 5, 7 ];
+const userPromises = ids.map( id => getUser(id) );
 
-Promise.all( promises ).then( (users) => {
-    for( let user of users ){
+Promise.all( userPromises ).then( (users) => {
+    users.forEach(user => {
         console.log( user.name );
-    }
+    });
 } ).catch( (error) => {
     console.log(error);
+} ).finally( () => {
+    console.log('');
 } );
