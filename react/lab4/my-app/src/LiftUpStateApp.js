@@ -9,7 +9,11 @@ function BoilingVerdict(props)
 
 function App()
 {
-    return <div>Lift up State App</div>;
+    return (
+        <div>
+            <BoilingVerdict celsius={100} />
+        </div>
+    );
 }
 
 export default App;
