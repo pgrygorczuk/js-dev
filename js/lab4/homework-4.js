@@ -5,7 +5,7 @@
 const COLORS = ['♠', '♡', '♣', '♢'];
 const VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-Array.prototype.random = function()
+Array.prototype.random = function() //getRandom
 {
     return this[Math.floor((Math.random()*this.length))];
 }
@@ -58,7 +58,7 @@ class Poker
             if( !this.cards.some( (item) => item.equals(card) ) )
                 this.cards.push( card );
         }
-        this.cards.sort( (a, b) => a.compare(b) )
+        this.cards.sort( (a, b) => a.compare(b) );
     }
     sameColor()
     {
