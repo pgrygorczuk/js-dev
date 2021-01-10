@@ -18,6 +18,12 @@
   height: 90px;
 }
 
+input
+{
+  margin: 16px;
+  padding: 8px;
+}
+
 button
 {
   width: 100%;

@@ -1,52 +1,40 @@
 import * as React from 'react';
 
-function UsernameForm({onSubmitUsername}) {
-    const [username, setUsername] = React.useState( '' );
-    const [isUsernameNotEmpty, setIsUsernameNotEmpty] = React.useState( true );
-    const [errorMessage, setErrorMessage] = React.useState( '' );
+//Shift + Alt + F - for fix indentation
 
-    //Praca domowa: blokada dalszego wpisywania po wpisaniu jednej wielskiej litery.
-    //Mozliwe jest wpisanie jednej wielkiej litery, kolejnych nie. Jezeli skasujemy wielka litere, mozna dalej pisac.
+function UsernameForm()
+{
+	const [username, setUsername] = React.useState( '' );
+	const [errorMessage, setErrorMessage] = React.useState( false );
 
-    function handleChange(e)
-    {
-        const username = e.target.value;
-        setUsername( username );
-        setIsUsernameNotEmpty( username.length <= 0 );
-        if( username.toLowerCase() != username )
-        {
-            setErrorMessage( 'Characters should e in lowercase.' );
-        }
-        else
-        {
-            setErrorMessage( '' );
-        }
-    }
+	function onChange(e)
+	{
+		console.log( username );
+		if( e.target.value.toLowerCase() != e.target.value )
+		{
+			if( !Boolean(errorMessage) )
+			{
+				setUsername( e.target.value );
+				setErrorMessage( "Characters should be in lowercase." );
+			}
+		}
+		else
+		{
+			setErrorMessage( false );
+			setUsername( e.target.value );
+		}
+	}
 
-    function handleSubmit(e)
-    {
-        e.preventDefault();
-        onSubmitUsername( username );
-    }
-
-  return (
-    //   e => onSubmitUsername(e)
-    <form onSubmit={handleSubmit}> 
-      <div>
-        <label>Username:</label>
-        <input
-            disabled={username.toLocaleLowerCase()!=username}
-            id="username" type="text" value={username} onChange={handleChange} />
-      </div>
-        {Boolean(errorMessage) && <p>{errorMessage}</p>}
-      <button disabled={isUsernameNotEmpty} style="disabled" type="submit">Submit</button>
-    </form>
-  );
+	return (
+		<div>
+			<input id="username" type="text" value={username} onChange={onChange}/>
+			{ Boolean(errorMessage) && <p>{errorMessage}</p> }
+		</div> );
 }
 
-function App() {
-  const onSubmitUsername = username => alert(`You entered: ${username}`);
-  return <UsernameForm onSubmitUsername={onSubmitUsername} />;
+function App()
+{
+	return <UsernameForm />;
 }
 
 export default App;
