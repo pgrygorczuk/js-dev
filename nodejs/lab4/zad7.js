@@ -1,15 +1,14 @@
 const request = require('request');
 const fs      = require('fs');
 
-function save( data )
+function save( filename, data )
 {
     return new Promise( (resolve, reject) => {
-        fs.writeFile('./output.json', JSON.stringify( data ), 'utf-8', (err, data) => {
-            if(err){
+        fs.writeFile( filename, JSON.stringify( data ), 'utf-8', (err, data) => {
+            if( err )
                 reject( err );
-            }else{
+            else
                 resolve( 'Data has been saved.' );
-            }
         });
     } );
 }
@@ -42,10 +41,10 @@ getUser(2).then( (user) => {
         user.address.geo.lat,
         user.address.geo.lng );
 } ).then( (weather) => {
-    console.log( weather );
-    return save( weather );
-} ).then( (text) => {
-    console.log(text);
+    console.log( weather.main.temp );
+    return save( 'pogoda.json', weather );
+} ).then( (result) => {
+    console.log(result);
 } ).catch( (error) => {
     console.log(error);
 } );
