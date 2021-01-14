@@ -1,0 +1,8 @@
+<h1>Hello world</h1>
+<p>app.component.html</p>
+<input [(ngModel)]="testvar" name="testvar" type="text" placeholder="Just for test" required minlength="3">
+<p>You entered: {{testvar}}</p>
+
+<p>Child component says, you entered: {{name}}</p>
+
+<app-example-form [testvar]="testvar" (nameEvent)="receiveName($event)"></app-example-form>

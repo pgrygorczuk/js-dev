@@ -1,0 +1,12 @@
+<h2>example-form component</h2>
+
+<form>
+
+    <input [(ngModel)]="name" name="name" type="text" placeholder="Enter your name">
+    <p>You entered: {{name}}</p>
+    <p>Variable from parent contains: {{testvar}}</p>
+    <button (click)="sendName()">Emit</button>
+
+</form>
+
+

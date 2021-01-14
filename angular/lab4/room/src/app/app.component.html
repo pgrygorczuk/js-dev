@@ -1,0 +1,27 @@
+<h1>People in the room</h1>
+
+<table>
+  <tr class="{{colorClass}}">
+    <td>Max allowed:</td>
+    <td>{{maxAllowed}}</td>
+  </tr>
+  <tr>
+    <td>Current number:</td>
+    <td>{{persons.length}}</td>
+  </tr>
+</table>
+
+<app-persons-form
+  [persons]="persons"
+  [frameworks]="frameworks"
+  [selectedPerson]="selectedPerson"
+  (addPersonEvent)="addPerson($event)"
+  (editPersonEvent)="editPerson($event)">
+</app-persons-form>
+
+<app-persons-list
+  [persons]="persons"
+  [frameworks]="frameworks"
+  (deleteEvent)="deletePerson($event)"
+  (editEvent)="editPerson($event)">
+</app-persons-list>

@@ -1,0 +1,22 @@
+
+<h2>Currently in the room are:</h2>
+
+<p>
+    <button (click)="delete(-1)">Clear</button>
+    &nbsp;Filter by favourite framework:
+    <select [(ngModel)]="framework">
+        <option value="all">Show all</option>
+        <option *ngFor="let item of frameworks | keyvalue" [value]="item.key">
+            {{item.value}}
+        </option>
+    </select>
+</p>
+
+<table>
+    <tr *ngFor="let item of persons | filter:'favouriteFramework':framework; let i = index">
+        <td>{{i+1}}.</td>
+        <td>{{item.name}} likes {{frameworks[item.favouriteFramework]}}</td>
+        <td><button (click)=edit(i)>Edit</button></td>
+        <td><button (click)="delete(i)">X</button></td>
+    </tr>
+</table>

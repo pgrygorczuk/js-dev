@@ -1,0 +1,10 @@
+
+<input [(ngModel)]="name" name="name" placeholder="Enter person's name" required minlength="3">
+likes
+<select [(ngModel)]="favouriteFramework">
+    <option *ngFor="let item of frameworks | keyvalue" [value]="item.key">{{item.value}}</option>
+</select>
+
+<button (click)="add()">Add</button>
+<button (click)="addRandom()">Add random</button>
+<button (click)="save()" *ngIf="!isUpdateButtonHidden">Save</button>
