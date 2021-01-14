@@ -41,17 +41,27 @@ function App()
     const [celsius, setCelsius] = React.useState(0);
     const [fahrenheit, setFahrenheit] = React.useState(0);
 
+    const handleFahrenheitChange = (value) => {
+        setFahrenheit(value);
+        setCelsius( farenheitToCelsius(value) );
+    }
+
+    const handleCelsiusChange = (value) => {
+        setCelsius(value);
+        setFahrenheit( celsiusToFahrenheit(value) );
+    }
+
     return (
         <div>
             <TemperatureInput
                 scale="c"
                 value={celsius}
-                setTemperature={setCelsius} />
+                setTemperature={handleCelsiusChange} />
             <br />
             <TemperatureInput
                 scale="f"
-                value={celsius}
-                setTemperature={setFahrenheit}
+                value={fahrenheit}
+                setTemperature={handleFahrenheitChange}
             />
             <BoilingVerdict celsius={parseFloat(celsius)} />
         </div>
