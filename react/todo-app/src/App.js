@@ -1,8 +1,13 @@
 import * as React from 'react';
 import './App.css';
 
-function TodoRow({task, index, onDelete, onCheck})
+function TodoRow({task, index, onDelete, onEdit, onCheck})
 {
+    function handleBlur(e)
+    {
+        console.log('aaa');
+    }
+
     return (
         <tr key={index}>
             <td>{index+1}.</td>
@@ -11,9 +16,14 @@ function TodoRow({task, index, onDelete, onCheck})
                     value={task.completed}
                     onChange={e => onCheck(index, e.target.value)} />
             </td>
-            <td>{task.name}</td>
             <td>
-                <button className="btn btn-outline-dark mx-1">
+                {task.name}
+                <input type="text" value={task.name}
+                    onChange={e => onEdit(index, e.target.value)}
+                    obBlur={e => handleBlur(e)} />
+            </td>
+            <td>
+                <button className="btn btn-outline-dark mx-1" onClick={e => onEdit(index)}>
                     <i class="bi bi-pencil"></i>
                 </button>
                 <button className="btn btn-outline-dark" onClick={e => onDelete(index)}>
@@ -24,12 +34,18 @@ function TodoRow({task, index, onDelete, onCheck})
     );
 }
 
-function TodoFilter()
+function TodoFilter({filter, setFilter})
 {
+    function handleChange(e)
+    {
+        setFilter(e.target.value);
+    }
+
     return (
         <React.Fragment>
             <label for="filterSelect" className="mt-2">Filter tasks</label>
-            <select id="filterSelect" className="form-select">
+            <select id="filterSelect" className="form-select"
+                onChange={e => handleChange(e)} value={filter}>
                 <option value="all">Show all</option>
                 <option value="completed">Completed</option>
                 <option value="not-completed">Not completed</option>
@@ -38,7 +54,7 @@ function TodoFilter()
     );
 }
 
-function TodoList({tasks, setTasks})
+function TodoList({tasks, setTasks, filter})
 {
     function handleDelete(index)
     {
@@ -47,9 +63,14 @@ function TodoList({tasks, setTasks})
         }) );
     }
 
-    function handleEdit(index, name)
+    function handleEdit(index, name='')
     {
-
+        const newTasks = tasks.map( task => {
+            if( task.index == index )
+                return { ...task, name: name };
+            return task;
+        } );
+        setTasks( newTasks );
     }
 
     function handleCheck(index, completed)
@@ -75,8 +96,17 @@ function TodoList({tasks, setTasks})
                     </tr>
                 </thead>
                 <tbody>
-                    {tasks.map( (value, index) => {
-                        return <TodoRow task={value} index={index} onDelete={handleDelete} onCheck={handleCheck} />;
+                    {tasks
+                    .filter( (value) => {
+                        return filter=='all' ||
+                            value.completed && filter=='completed' ||
+                            !value.completed && filter=='not-completed';
+                    } )
+                    .map( (value, index) => {
+                        return <TodoRow task={value} index={index}
+                            onDelete={handleDelete}
+                            onEdit={handleEdit}
+                            onCheck={handleCheck} />;
                     })}
                 </tbody>
             </table>
@@ -115,6 +145,7 @@ function App()
 {
     // task -> { name: '', completed: '' }
     const [tasks, setTasks] = React.useState([]);
+    const [filter, setFilter] = React.useState('all');
 
     //TODO: repair task.index
     //npm start --open
@@ -127,8 +158,8 @@ function App()
     return (
         <React.Fragment>
             <TodoForm onAdd={handleAdd}  />
-            <TodoFilter />
-            <TodoList tasks={tasks} setTasks={setTasks} />
+            <TodoFilter filter={filter} setFilter={setFilter} />
+            <TodoList tasks={tasks} setTasks={setTasks} filter={filter} />
         </React.Fragment>
     );
 }
