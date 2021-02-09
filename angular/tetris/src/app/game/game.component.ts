@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameComponent implements OnInit
 {
-
   constructor() { }
-
   ngOnInit(): void {}
+
+  // @ViewChild(TetrisCoreComponent)
+  //   private _tetris: TetrisCoreComponent;
+ 
+  //   public onRotateButtonPressed() {
+  //       this._tetris.actionRotate();
+  //   }
 
 }
