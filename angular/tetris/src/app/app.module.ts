@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
@@ -10,11 +11,12 @@ import { IntroComponent } from './intro/intro.component';
   declarations: [
     AppComponent,
     GameComponent,
-    IntroComponent
+    IntroComponent,
   ],
   imports: [
     BrowserModule,
-    TetrisCoreModule
+    TetrisCoreModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

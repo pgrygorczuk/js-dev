@@ -5,15 +5,42 @@
             <small>written in Angular</small>
         </h1>
     </div>
+
     <div class="col-6">
-        <label>Enter Your name:</label>
-        <input class="form-control" type="text" />
-        <label>Enter Your e-mail:</label>
-        <input class="form-control" type="text" />
-        <button class="btn btn-outline-secondary my-2 float-right">Start</button>
+        <form #personForm="ngForm">
+
+            <div class="form-group">
+                <label for="name-input">Enter Your name:</label>
+                <input ngModel #name="ngModel" id="name-input" name="name"
+                    class="form-control" type="text" required minlength="3" />
+                <!-- Errors section -->
+                <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+                    <div *ngIf="name.errors.required">Your name is required.</div>
+                    <div *ngIf="name.errors.minlength">
+                        Your name should be mininum {{name.errors.minlength.requiredLength}} characters.</div>
+                    <div *ngIf="name.errors.pattern">Your name should start with a letter.</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email-input">Enter Your e-mail:</label>
+                <input ngModel #email="ngModel" id="email-input" name="email" class="form-control" type="text" required email="true" />
+                <!-- Errors section -->
+                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+                    <div *ngIf="email.errors.required">Your e-mail is required.</div>
+                    <div *ngIf="email.errors.email">Please enter your valid e-mail.</div>
+                </div>
+            </div>
+
+            <button (click)="start(personForm.form)" class="btn btn-outline-secondary my-3 float-right">Start</button>
+
+        </form>
     </div>
+
     <div class="col-6">
         <p>Nieniejsza aplikacja powstała jako zaliczenie z przedmiotu Angular.</p>
     </div>
+
     <div class="col-12 my-4"></div>
+
 </div>

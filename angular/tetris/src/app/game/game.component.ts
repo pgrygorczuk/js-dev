@@ -10,6 +10,8 @@ export class GameComponent implements OnInit
   constructor() { }
   ngOnInit(): void {}
 
+  onLineCleared(){}
+
   // @ViewChild(TetrisCoreComponent)
   //   private _tetris: TetrisCoreComponent;
  
