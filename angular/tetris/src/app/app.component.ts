@@ -8,5 +8,18 @@ import { Component } from '@angular/core';
 export class AppComponent
 {
   title = 'tetris';
-  view = 'intro';
+  //view = 'intro';
+  view = 'game';
+
+  onGameStart($event)
+  {
+    //console.log($event.name);
+    //console.log($event.email);
+    this.view = 'game';
+  }
+
+  onGameExit($event)
+  {
+    this.view = 'intro';
+  }
 }

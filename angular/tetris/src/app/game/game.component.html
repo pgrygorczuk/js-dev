@@ -1,13 +1,58 @@
-<p>game works!</p>
+<div class="row">
+	<div class="col-12">
+        <h1>
+            Tetris
+            <small>written in Angular</small>
+        </h1>
+    </div>
 
-<tetris-core #game
-        (lineCleared)="onLineCleared()">
-</tetris-core>
- 
-<button (click)="game.actionStart()">Start</button>
-<button (click)="game.actionStop()">Stop</button>
-<button (click)="game.actionReset()">Reset</button>
-<button (click)="game.actionRotate()">Rotate</button>
-<button (click)="game.actionLeft()">Left</button>
-<button (click)="game.actionRight()">Right</button>
-<button (click)="game.actionDown()">Down</button>
+	<div class="col-md-6 d-flex justify-content-center">
+		<tetris-core #game
+			(lineCleared)="onLineCleared()"
+			(gameOver)="onGameOver()" >
+		</tetris-core>
+	</div>
+
+	<div class="col-md-6">
+
+		<h4>Welcome</h4>
+		<p>The game is running...</p>
+		<button class="btn btn-outline-dark mx-1" (click)="game.actionStop()">Pause</button>
+		<button class="btn btn-outline-warning mx-1" (click)="game.actionReset()">Restart</button>
+		<button class="btn btn-outline-danger mx-1" (click)="onGameExit()">Exit game</button>
+		<hr>
+		<p>Score: <b>{{points}}</b></p>
+		
+		<div class="form-group">
+			<label for="event-select">Show game events</label>
+			<select id="event-select" class="form-control">
+				<option>All</option>
+				<option>Game started</option>
+				<option>Game stopped</option>
+				<option>Game over</option>
+				<option>Game exitted</option>
+				<option>Line cleared</option>
+			</select>
+		</div>
+
+		<div class="mt-1" style="max-height: 460px; overflow-y:scroll;">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Time</th><th>Event</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let item of history">
+						<td>{{item.timestamp | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+						<td>{{item.message}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+	<div class="col-12 my-4"></div>
+
+</div>

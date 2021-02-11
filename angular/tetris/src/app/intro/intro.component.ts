@@ -19,9 +19,8 @@ export class IntroComponent implements OnInit
     const
       name = form.value.name,
       email = form.value.email;
-    
-    console.log(form);
-    this.startEvent.emit({name, email});
-  }
 
+    if( form.valid )
+      this.startEvent.emit({name, email});
+  }
 }

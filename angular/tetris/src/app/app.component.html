@@ -24,8 +24,9 @@
 <div class="container-fluid page-content">
 
   <app-intro *ngIf="view=='intro'"
-    (start)="onGameStart()"></app-intro>
+    (startEvent)="onGameStart($event)"></app-intro>
 
-  <app-game *ngIf="view=='game'"></app-game>
+  <app-game *ngIf="view=='game'"
+    (exitEvent)="onGameExit()"></app-game>
 
 </div>

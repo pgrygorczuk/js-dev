@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { GameComponent } from './game/game.component';
-import {TetrisCoreModule} from 'ngx-tetris';
+import { TetrisCoreModule } from 'ngx-tetris';
 import { IntroComponent } from './intro/intro.component';
 
 @NgModule({
