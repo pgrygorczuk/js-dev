@@ -5,17 +5,11 @@
       <small>ngx-tetris</small>
     </a>
     <div class="d-flex">
-      <a class="nav-link text-center active" href="#">
+      <a class="nav-link text-center {{view=='intro'?'active':''}}" href="#">
         Intro
       </a>
-      <a class="nav-link text-center" href="#">
+      <a class="nav-link text-center {{view=='game'?'active':''}}" href="#">
         Game
-      </a>
-      <a class="nav-link text-center" href="#">
-        Credits
-      </a>
-      <a class="nav-link text-center" href="#">
-        More
       </a>
     </div>
   </nav>
@@ -27,6 +21,7 @@
     (startEvent)="onGameStart($event)"></app-intro>
 
   <app-game *ngIf="view=='game'"
-    (exitEvent)="onGameExit()"></app-game>
+    (exitEvent)="onGameExit()"
+    [person]="person"></app-game>
 
 </div>

@@ -7,14 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent
 {
+  person = {};
   title = 'tetris';
   //view = 'intro';
   view = 'game';
 
   onGameStart($event)
   {
-    //console.log($event.name);
-    //console.log($event.email);
+    this.person = {
+      name: $event.name,
+      email: $event.email,
+    };
     this.view = 'game';
   }
 
