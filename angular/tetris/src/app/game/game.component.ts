@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, HostListener, ElementRef, Output, EventEmitter } from '@angular/core';
 import {TetrisCoreComponent} from 'ngx-tetris';
+import { TimerComponent } from '../timer/timer.component';
 
 @Component({
   selector: 'app-game',
@@ -9,14 +10,16 @@ import {TetrisCoreComponent} from 'ngx-tetris';
 export class GameComponent implements OnInit
 {
 	points = 0;
-	time = 0;
-	log = '';
 	history = [];
+	sortedAZ = true;
+	showGameEvents = 'all';
+	gameStatus = 'The game is ready. Press SPACEBAR to start.';
 
 	@ViewChild('game') tetris: TetrisCoreComponent;
+	@ViewChild('timer') timer: TimerComponent;
 	@Output() exitEvent = new EventEmitter();
 
-	constructor() { }
+	constructor() {}
 	ngOnInit(): void {}
 
 	@HostListener('window:keyup', ['$event'])
@@ -39,7 +42,14 @@ export class GameComponent implements OnInit
 			this.onGameStart();
 		}
 
-		console.log(this.tetris);
+		// console.log(this.tetris);
+	}
+
+	private addGameEvent(message: String)
+	{
+		this.history.push({
+			timestamp: Date.now(),
+			message: message} );
 	}
 
 	incrementPoints()
@@ -52,36 +62,40 @@ export class GameComponent implements OnInit
 		if(this.tetris.state == 1)
 		{
 			this.tetris.actionStop();
-			this.history.push({
-				timestamp: Date.now(),
-				message: 'Game stopped.'} );
+			this.timer.stop();
+			this.addGameEvent('Game stopped.');
 		}
 		else
 		{
 			this.tetris.actionStart();
-			this.history.push({
-				timestamp: Date.now(),
-				message: 'Game started.'} );
+			this.timer.start();
+			this.addGameEvent('Game started.');
 		}
 	}
 
 	onLineCleared(){
 		this.incrementPoints();
-		this.history.push({
-			timestamp: Date.now(),
-			message: 'Line cleared.'} );
+		this.addGameEvent('Line cleared.');
 	}
 
 	onGameOver(){
-		this.history.push({
-			timestamp: Date.now(),
-			message: 'Game over.'} );
+		this.addGameEvent('Game over.');
+		this.timer.stop();
 	}
 
 	onGameExit(){
-		this.history.push({
-			timestamp: Date.now(),
-			message: 'Game exitted.'} );
+		this.addGameEvent('Game exitted.');
+		this.timer.stop();
 		this.exitEvent.emit();
+	}
+
+	onSortEvents(){
+		this.sortedAZ = !this.sortedAZ;
+		this.history.sort((a, b) => {
+			if(this.sortedAZ)
+				return a.timestamp - b.timestamp;
+			else
+				return b.timestamp - a.timestamp;
+		});
 	}
 }

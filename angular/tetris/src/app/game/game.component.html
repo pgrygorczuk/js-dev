@@ -6,32 +6,35 @@
         </h1>
     </div>
 
-	<div class="col-md-6 d-flex justify-content-center">
+	<div class="col-md-5 d-flex justify-content-center">
 		<tetris-core #game
 			(lineCleared)="onLineCleared()"
 			(gameOver)="onGameOver()" >
 		</tetris-core>
 	</div>
 
-	<div class="col-md-6">
+	<div class="col-md-7">
 
 		<h4>Welcome</h4>
-		<p>The game is running...</p>
+		<p>{{gameStatus}}</p>
 		<button class="btn btn-outline-dark mx-1" (click)="game.actionStop()">Pause</button>
 		<button class="btn btn-outline-warning mx-1" (click)="game.actionReset()">Restart</button>
 		<button class="btn btn-outline-danger mx-1" (click)="onGameExit()">Exit game</button>
 		<hr>
-		<p>Score: <b>{{points}}</b></p>
+		<div style="font-size: 1.25rem;" class="d-flex justify-content-around">
+			<p>Score: {{points}}</p>
+			<p>Time played: <app-timer #timer></app-timer></p>
+		</div>
 		
 		<div class="form-group">
 			<label for="event-select">Show game events</label>
-			<select id="event-select" class="form-control">
-				<option>All</option>
-				<option>Game started</option>
-				<option>Game stopped</option>
-				<option>Game over</option>
-				<option>Game exitted</option>
-				<option>Line cleared</option>
+			<select [(ngModel)]="showGameEvents" id="event-select" class="form-select">
+				<option value="all">Show all</option>
+				<option value="started">Game started</option>
+				<option value="stopped">Game stopped</option>
+				<option value="over">Game over</option>
+				<option value="exitted">Game exitted</option>
+				<option value="cleared">Line cleared</option>
 			</select>
 		</div>
 
@@ -39,11 +42,16 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Time</th><th>Event</th>
+						<th (click)="onSortEvents()">
+							Time
+							<i *ngIf="sortedAZ" class="bi bi-sort-alpha-down"></i>
+							<i *ngIf="!sortedAZ" class="bi bi-sort-alpha-down-alt"></i>
+						</th>
+						<th>Event</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let item of history">
+					<tr *ngFor="let item of history | eventsFilter:'message':showGameEvents">
 						<td>{{item.timestamp | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
 						<td>{{item.message}}</td>
 					</tr>
