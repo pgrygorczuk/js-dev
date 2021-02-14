@@ -8,6 +8,7 @@ import { TetrisCoreModule } from 'ngx-tetris';
 import { IntroComponent } from './intro/intro.component';
 import { EventsFilterPipe } from './events-filter.pipe';
 import { TimerComponent } from './timer/timer.component';
+import { EventsSortPipe } from './events-sort.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TimerComponent } from './timer/timer.component';
     IntroComponent,
     EventsFilterPipe,
     TimerComponent,
+    EventsSortPipe,
   ],
   imports: [
     BrowserModule,

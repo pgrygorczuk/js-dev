@@ -49,22 +49,22 @@ export class GameComponent implements OnInit
 		// console.log(this.tetris);
 	}
 
-	private sortHistory()
-	{
-		this.history.sort((a, b) => {
-			if(this.sortedAZ)
-				return a.timestamp - b.timestamp;
-			else
-				return b.timestamp - a.timestamp;
-		});
-	}
+	// private sortHistory()
+	// {
+	// 	this.history.sort((a, b) => {
+	// 		if(this.sortedAZ)
+	// 			return a.timestamp - b.timestamp;
+	// 		else
+	// 			return b.timestamp - a.timestamp;
+	// 	});
+	// }
 
 	private addGameEvent(message: String)
 	{
 		this.history.push({
 			timestamp: Date.now(),
 			message: message} );
-		this.sortHistory();
+		//this.sortHistory();
 	}
 
 	incrementPoints()
@@ -115,7 +115,7 @@ export class GameComponent implements OnInit
 
 	onSortEvents(){
 		this.sortedAZ = !this.sortedAZ;
-		this.sortHistory();
-		this.cd.markForCheck();
+		// this.sortHistory();
+		// this.cd.markForCheck();
 	}
 }

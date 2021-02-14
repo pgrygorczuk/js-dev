@@ -9,8 +9,8 @@ export class AppComponent
 {
   person = {};
   title = 'tetris';
-  //view = 'intro';
-  view = 'game';
+  view = 'intro';
+  //view = 'game';
 
   onGameStart($event)
   {
