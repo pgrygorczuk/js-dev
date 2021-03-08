@@ -1,0 +1,23 @@
+<h2>Top score</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Best</th>
+            <th>First login</th>
+            <th>Last game</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let player of players">
+            <td>{{player['name']}}</td>
+            <td>{{player['email']}}</td>
+            <td>{{player['best_result']}}</td>
+            <td>{{player['created_at']}}</td>
+            <td>{{player['updated_at'] ? player['updated_at'] : '-'}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<button (click)="onClick()">Test add player</button>

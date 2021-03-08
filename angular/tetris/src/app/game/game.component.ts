@@ -24,7 +24,10 @@ export class GameComponent implements OnInit
 	};
 
 	constructor(private cd: ChangeDetectorRef) {}
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		//this.tetris.state = GameState.Started;
+		
+	}
 
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent): void

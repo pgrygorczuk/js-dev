@@ -9,6 +9,9 @@ import { IntroComponent } from './intro/intro.component';
 import { EventsFilterPipe } from './events-filter.pipe';
 import { TimerComponent } from './timer/timer.component';
 import { EventsSortPipe } from './events-sort.pipe';
+import { PlayersService } from './players.service';
+import { PlayersListComponent } from './players-list/players-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,13 +21,15 @@ import { EventsSortPipe } from './events-sort.pipe';
     EventsFilterPipe,
     TimerComponent,
     EventsSortPipe,
+    PlayersListComponent,
   ],
   imports: [
     BrowserModule,
     TetrisCoreModule,
     FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [PlayersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
