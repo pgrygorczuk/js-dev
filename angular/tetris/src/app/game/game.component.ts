@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener, Output, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import {TetrisCoreComponent} from 'ngx-tetris';
+import { GameState, TetrisCoreComponent } from 'ngx-tetris';
+import { IPlayer } from '../player';
+import { PlayersService } from '../players.service';
 import { TimerComponent } from '../timer/timer.component';
 
 @Component({
@@ -18,16 +20,15 @@ export class GameComponent implements OnInit
 	@ViewChild('game') tetris: TetrisCoreComponent;
 	@ViewChild('timer') timer: TimerComponent;
 	@Output() exitEvent = new EventEmitter();
-	@Input() person = {
+	@Input() player: IPlayer = {
 		name: '',
 		email: '',
+		time_played: 0,
+		best_result: 0,
 	};
 
-	constructor(private cd: ChangeDetectorRef) {}
-	ngOnInit(): void {
-		//this.tetris.state = GameState.Started;
-		
-	}
+	constructor(private playersService: PlayersService) {}
+	ngOnInit(): void {}
 
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent): void
@@ -52,32 +53,32 @@ export class GameComponent implements OnInit
 		// console.log(this.tetris);
 	}
 
-	// private sortHistory()
-	// {
-	// 	this.history.sort((a, b) => {
-	// 		if(this.sortedAZ)
-	// 			return a.timestamp - b.timestamp;
-	// 		else
-	// 			return b.timestamp - a.timestamp;
-	// 	});
-	// }
-
 	private addGameEvent(message: String)
 	{
 		this.history.push({
 			timestamp: Date.now(),
 			message: message} );
-		//this.sortHistory();
+		this.updatePlayer();
 	}
 
-	incrementPoints()
+	private incrementPoints()
 	{
 		this.points += 1;
+		if( this.points > this.player.best_result )
+			this.player.best_result = this.points;
+	}
+
+	private updatePlayer()
+	{
+		this.player.time_played = this.timer.getTime();
+		this.playersService.addPlayer(this.player).subscribe(player => {
+			this.player = player;
+		});
 	}
 
 	onGameStart()
 	{
-		if(this.tetris.state == 1)
+		if(this.tetris.state == GameState.Started)
 		{
 			this.tetris.actionStop();
 			this.timer.stop();
@@ -118,7 +119,5 @@ export class GameComponent implements OnInit
 
 	onSortEvents(){
 		this.sortedAZ = !this.sortedAZ;
-		// this.sortHistory();
-		// this.cd.markForCheck();
 	}
 }

@@ -43,8 +43,14 @@ export class TimerComponent implements OnInit
     this.display += seconds;
   }
 
-  public setTime(time: number){
+  public setTime(time: number): void
+  {
     this.time = time;
+  }
+
+  public getTime(): number
+  {
+    return this.time;
   }
 
   public start()

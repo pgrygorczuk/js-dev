@@ -15,7 +15,7 @@
 
 	<div class="col-md-7 col-xl-6">
 
-		<h4>Welcome, {{person.name}} <small>{{person.email}}</small></h4>
+		<h4>Welcome, {{player.name}} <small>({{player.email}})</small></h4>
 		<p>{{gameStatus}}</p>
 		<button class="btn btn-outline-dark mx-1" (click)="onGameStart()">
 			{{ game.state == 1 ? 'Pause': 'Start'}}

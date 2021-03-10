@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IPlayer } from './player';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent
 {
-  person = {};
-  title = 'tetris';
-  view = 'intro';
+  private player = {};
+  private title = 'tetris';
+  public view = 'intro';
   //view = 'game';
 
   onGameStart($event)
   {
-    this.person = {
-      name: $event.name,
-      email: $event.email,
-    };
+    this.player = $event.player;
     this.view = 'game';
   }
 
