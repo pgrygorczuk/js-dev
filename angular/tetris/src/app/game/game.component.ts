@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, HostListener, Output, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Output, Input, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { GameState, TetrisCoreComponent } from 'ngx-tetris';
 import { IPlayer } from '../player';
 import { PlayersService } from '../players.service';
@@ -20,15 +21,19 @@ export class GameComponent implements OnInit
 	@ViewChild('game') tetris: TetrisCoreComponent;
 	@ViewChild('timer') timer: TimerComponent;
 	@Output() exitEvent = new EventEmitter();
-	@Input() player: IPlayer = {
-		name: '',
-		email: '',
-		time_played: 0,
-		best_result: 0,
-	};
+	// @Input() player: IPlayer = { // Removed after routing.
+	// 	name: '',
+	// 	email: '',
+	// 	time_played: 0,
+	// 	best_result: 0,
+	// };
+	public player: IPlayer;
 
-	constructor(private playersService: PlayersService) {}
-	ngOnInit(): void {}
+	constructor(private _playersService: PlayersService, private _router: Router) {}
+	ngOnInit(): void
+	{
+		this.player = this._playersService.loadPlayer();
+	}
 
 	@HostListener('window:keyup', ['$event'])
 	keyEvent(event: KeyboardEvent): void
@@ -70,8 +75,9 @@ export class GameComponent implements OnInit
 
 	private updatePlayer()
 	{
-		this.player.time_played = this.timer.getTime();
-		this.playersService.addPlayer(this.player).subscribe(player => {
+		//this.player.time_played += this.timer.getTime(); // ?????????
+		this.player.time_played = Number(this.player.time_played) + this.timer.getTime();
+		this._playersService.addPlayer(this.player).subscribe(player => {
 			this.player = player;
 		});
 	}
@@ -114,7 +120,9 @@ export class GameComponent implements OnInit
 		this.addGameEvent('Game exitted.');
 		this.tetris.actionStop();
 		this.timer.stop();
-		this.exitEvent.emit();
+		//this.exitEvent.emit();
+		this._playersService.savePlayer(this.player);
+        this._router.navigate(['/intro']);
 	}
 
 	onSortEvents(){

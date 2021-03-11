@@ -9,18 +9,18 @@ import { IPlayer } from './player';
 export class AppComponent
 {
   private player = {};
-  private title = 'tetris';
-  public view = 'intro';
+  private title = 'Tetris game';
+  //public view = 'intro';
   //view = 'game';
 
   onGameStart($event)
   {
     this.player = $event.player;
-    this.view = 'game';
+    //this.view = 'game';
   }
 
   onGameExit($event)
   {
-    this.view = 'intro';
+    //this.view = 'intro';
   }
 }

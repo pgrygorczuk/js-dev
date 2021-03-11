@@ -5,10 +5,11 @@
       <small>ngx-tetris</small>
     </a>
     <div class="d-flex">
-      <a class="nav-link text-center {{view=='intro'?'active':''}}" href="#">
+      <!-- <a class="nav-link text-center {{view=='intro'?'active':''}}" href="#"> -->
+        <a class="nav-link text-center" routerLink="/intro" routerLinkActive="active">
         Intro
       </a>
-      <a class="nav-link text-center {{view=='game'?'active':''}}" href="#">
+      <a class="nav-link text-center" routerLink="/game" routerLinkActive="active" >
         Game
       </a>
     </div>
@@ -17,11 +18,13 @@
 
 <div class="container-fluid page-content">
 
-  <app-intro *ngIf="view=='intro'"
+  <router-outlet></router-outlet>
+
+  <!-- <app-intro
     (startEvent)="onGameStart($event)"></app-intro>
 
-  <app-game *ngIf="view=='game'"
+  <app-game
     (exitEvent)="onGameExit()"
-    [player]="player"></app-game>
+    [player]="player"></app-game> -->
 
 </div>

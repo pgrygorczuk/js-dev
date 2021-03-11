@@ -9,7 +9,18 @@ import { IPlayer } from './player';
 export class PlayersService
 {
   private url = "https://studia.docs.iqhs.pl/players.php";
+  private player: IPlayer;
   constructor(private http: HttpClient) { }
+
+  savePlayer(player: IPlayer)
+  {
+    this.player = player;
+  }
+
+  loadPlayer(): IPlayer
+  {
+    return this.player;
+  }
 
   getPlayers(): Observable<IPlayer[]>
   {

@@ -12,6 +12,7 @@ import { EventsSortPipe } from './events-sort.pipe';
 import { PlayersService } from './players.service';
 import { PlayersListComponent } from './players-list/players-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,12 @@ import { HttpClientModule } from '@angular/common/http';
     TetrisCoreModule,
     FormsModule,
     HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'intro', component: IntroComponent },
+      { path: 'game', component: GameComponent },
+      { path: '', redirectTo: '/intro', pathMatch: 'full' },
+      { path: '**', redirectTo: '/intro' },
+    ]),
   ],
   providers: [PlayersService],
   bootstrap: [AppComponent]

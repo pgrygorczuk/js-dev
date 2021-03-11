@@ -11,19 +11,11 @@ export class TimerComponent implements OnInit
   public time: number = 0;
   public display: string = "00:00:00";
 
-  constructor(private ref: ChangeDetectorRef)
+  constructor(){}
+  ngOnInit(): void {}
+
+  ngOnDestroy(): void
   {
-    //ref.detach();
-    //this.ref.detach();
-    // setInterval( ()=>{
-    //   this.ref.detectChanges();
-    // }, 1000 );
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void{
     this.stop();
   }
 

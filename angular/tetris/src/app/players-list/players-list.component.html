@@ -1,7 +1,8 @@
-<h2>Top score</h2>
+<h3>Top score</h3>
 <table class="table table-hover">
     <thead>
         <tr>
+            <th>#</th>
             <th>Name</th>
             <th>E-mail</th>
             <th>Best</th>
@@ -12,6 +13,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let player of players">
+            <td>{{player['id']}}</td>
             <td>{{player['name']}}</td>
             <td>{{player['email']}}</td>
             <td>{{player['best_result']}}</td>

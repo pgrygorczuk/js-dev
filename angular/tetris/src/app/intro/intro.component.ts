@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IPlayer } from '../player';
 import { PlayersService } from '../players.service';
 
@@ -11,9 +12,9 @@ import { PlayersService } from '../players.service';
 export class IntroComponent implements OnInit
 {
   @Output() startEvent = new EventEmitter();
-  private player: IPlayer;
+  private _player: IPlayer;
 
-  constructor(private playersService: PlayersService) { }
+  constructor(private _playersService: PlayersService, private _router: Router) { }
   ngOnInit(): void {
   }
 
@@ -28,9 +29,11 @@ export class IntroComponent implements OnInit
 
     if( form.valid )
     {
-      this.playersService.addPlayer(newPlayer).subscribe(player => {
-        this.player = player;
-        this.startEvent.emit({player: this.player});
+      this._playersService.addPlayer(newPlayer).subscribe(player => {
+        this._player = player;
+        //this.startEvent.emit({player: this.player});
+        this._playersService.savePlayer(this._player);
+        this._router.navigate(['/game']);
       });
     }
   }
