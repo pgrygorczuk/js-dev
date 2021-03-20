@@ -1,10 +1,19 @@
+<form #personForm="ngForm">
 
-<input [(ngModel)]="name" name="name" placeholder="Enter person's name" required minlength="3">
-likes
-<select [(ngModel)]="favouriteFramework">
-    <option *ngFor="let item of frameworks | keyvalue" [value]="item.key">{{item.value}}</option>
-</select>
+    <!-- <input [(ngModel)]="name" name="name" placeholder="Enter person's name" required minlength="3"> -->
+    <input ngModel name="name" placeholder="Enter person's name" required minlength="3">
+    likes
+    <!-- <select [(ngModel)]="favouriteFramework" name="favouriteFramework"> -->
+    <select ngModel name="favouriteFramework">
+        <option *ngFor="let item of frameworks | keyvalue" [value]="item.key">{{item.value}}</option>
+    </select>
 
-<button (click)="add()">Add</button>
-<button (click)="addRandom()">Add random</button>
-<button (click)="save()" *ngIf="!isUpdateButtonHidden">Save</button>
+    <!-- <button (click)="add()" [disabled]="personForm.valid === false">Add</button> -->
+    <button (click)="add(personForm.form)" [disabled]="personForm.valid === false">Add</button>
+    <button (click)="addRandom()">Add random</button>
+    <button (click)="save()" *ngIf="!isUpdateButtonHidden">Save</button>
+
+    <p>Form errors: {{ personForm.form.errors | json }}</p>
+    <p>Form values: {{ personForm.form.values | json }}</p>
+
+</form>

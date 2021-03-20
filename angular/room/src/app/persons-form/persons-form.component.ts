@@ -1,4 +1,5 @@
-import { Component, OnInit, OnChanges, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Person } from '../person';
 
 @Component({
@@ -19,7 +20,10 @@ export class PersonsFormComponent implements OnInit, OnChanges
   @Output() addPersonEvent = new EventEmitter<Person>();
   @Output() editPersonEvent = new EventEmitter<Object>();
 
-  constructor(){ }
+  //@ViewChild ('name') nameInput: ElementRef;
+
+  constructor(){}
+
   ngOnInit(): void { }
   ngOnChanges(){ }
 
@@ -32,18 +36,28 @@ export class PersonsFormComponent implements OnInit, OnChanges
     if( index > -1 )
     {
       this.index = index;
-      this.name = this.persons[index].name;
+      this.name.value = this.persons[index].name;
       this.favouriteFramework = this.persons[index].favouriteFramework;
       this.isUpdateButtonHidden = false;
     }
   }
 
-  add()
+  private _validate(name, framework): boolean{
+    return true;
+  }
+
+  add(form: FormGroup)
   {
-    this.addPersonEvent.emit({
-      name: this.name,
-      favouriteFramework: this.favouriteFramework,
-    });
+    const name_ = form.value.name;
+    const framework_ = form.value.framework;
+
+    if( this. _validate(name_, framework_))
+    {
+      this.addPersonEvent.emit({
+        name: name_,
+        favouriteFramework: framework_,
+      });
+    }
   }
 
   addRandom()
