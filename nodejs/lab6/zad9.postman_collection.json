@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "9f6b90cd-8faf-4114-bf91-66e7f2c47537",
+		"name": "Node.js",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "lab6z9-add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4700/add?name=Jan&username=Kowalski&email=kowal@email.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4700",
+					"path": [
+						"add"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Jan"
+						},
+						{
+							"key": "username",
+							"value": "Kowalski"
+						},
+						{
+							"key": "email",
+							"value": "kowal@email.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lab6z9-show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4700/show",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4700",
+					"path": [
+						"show"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lab6z9-show-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4700/show?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4700",
+					"path": [
+						"show"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lab6z9-del",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4700/del?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4700",
+					"path": [
+						"del"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
