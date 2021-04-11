@@ -9,15 +9,15 @@ const file = (req, res, next) => {
         res.sendFile( path.resolve(file) );
     }
     else{
-        res.send(404, 'File does not exists');
+        res.send(404, 'File does not exists.');
     }
-    next();
+    //next();
 };
 
 app.use('/:file', file);
 
-app.get('/:file', (req, res) => {
-    //res.send(req.params.file);
+app.get('/', (req, res) => {
+    res.send();
 });
 
 app.listen(4700, () => console.log('Server started.'));
