@@ -3,8 +3,12 @@ const app = express();
 const fs = require('fs');
 const path = require('path');
 
-const file = (req, res, next) => {
+// Uwaga: wymagane dodanie zabezpieczenia, ktore umozliwi pobieranie
+// tylko plikow z okreslonego podkatalogu, np. z 'public'.
+
+const getFile = (req, res, next) => {
     const file = req.params.file;
+    //const absPath = __dirname + file;
     if( fs.existsSync(file) ){
         res.sendFile( path.resolve(file) );
     }
@@ -14,7 +18,7 @@ const file = (req, res, next) => {
     //next();
 };
 
-app.use('/:file', file);
+app.use('/:file', getFile);
 
 app.get('/', (req, res) => {
     res.send();
