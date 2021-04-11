@@ -16,11 +16,12 @@ const users = [{
 const authorize = (req, res, next) => {
     const auth = req.headers["authorization"];
     const [login, password] = auth.split(':');
-    const user = users.filter( item => {
-        return item.login === auth.login && item.password === auth.password;
+    const user = users.find( user => {
+        return user.login === login && user.password === password;
     });
-    
+
     if( user ){
+        req.user = user;
         next();
     }
     else{
@@ -31,7 +32,7 @@ const authorize = (req, res, next) => {
 app.use(authorize);
 
 app.get('/', (req, res) => {
-    res.send("Hello World!");
+    res.send(`Hello ${req.user.login}!`);
 });
 
 app.listen(4700, () => console.log('start server'));
