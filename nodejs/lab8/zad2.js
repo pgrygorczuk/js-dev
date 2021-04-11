@@ -3,8 +3,21 @@ const app = express();
 
 const token = '123';
 
+const users = [{
+    login: 'jan',
+    password: 'alamakota',
+    name: 'Jan',
+}, {
+    login: 'adam',
+    password: 'cukierki',
+    name: 'Adam',
+}];
+
 const authorize = (req, res, next) => {
-    if( req.header('authorization') === token ){
+    const auth = req.headers["authorization"];
+    const [login, password] = auth.split(':');
+
+    if(users.some(user => user.login === login && user.password === password)){
         next();
     }
     else{
