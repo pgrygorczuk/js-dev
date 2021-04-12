@@ -15,7 +15,7 @@
 
 	<div class="col-md-7 col-xl-6">
 
-		<h4>Welcome, {{player.name}} <small>({{player.email}})</small></h4>
+		<h4>Welcome, {{tetrisService.score.name}}. <small>Your result: {{tetrisService.score.score}}</small></h4>
 		<p>{{gameStatus}}</p>
 		<button class="btn btn-outline-dark mx-1" (click)="onGameStart()">
 			{{ game.state == 1 ? 'Pause': 'Start'}}
@@ -24,7 +24,7 @@
 		<button class="btn btn-outline-danger mx-1" (click)="onGameExit()">Exit game</button>
 		<hr>
 		<div style="font-size: 1.25rem;" class="d-flex justify-content-around">
-			<p>Score: <b>{{points}}</b></p>
+			<p>Score: <b>{{score}}</b></p>
 			<p>Time played: <b><app-timer #timer></app-timer></b></p>
 		</div>
 		

@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { GameComponent } from './game/game.component';
-import { TetrisCoreModule } from 'ngx-tetris';
 import { IntroComponent } from './intro/intro.component';
+import { GameComponent } from './game/game.component';
+import { ScoresComponent } from './scores/scores.component';
+import { TetrisCoreModule } from 'ngx-tetris';
 import { EventsFilterPipe } from './events-filter.pipe';
 import { TimerComponent } from './timer/timer.component';
 import { EventsSortPipe } from './events-sort.pipe';
@@ -13,16 +14,18 @@ import { PlayersService } from './players.service';
 import { PlayersListComponent } from './players-list/players-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { TetrisService } from './tetris.service';
 
 @NgModule({
-  declarations: [
+  declarations: [ // Remember to add here your components !
     AppComponent,
     GameComponent,
     IntroComponent,
-    EventsFilterPipe,
     TimerComponent,
-    EventsSortPipe,
+    ScoresComponent,
     PlayersListComponent,
+    EventsFilterPipe,
+    EventsSortPipe,
   ],
   imports: [
     BrowserModule,
@@ -32,11 +35,12 @@ import { RouterModule } from '@angular/router';
     RouterModule.forRoot([
       { path: 'intro', component: IntroComponent },
       { path: 'game', component: GameComponent },
+      { path: 'scores', component: ScoresComponent },
       { path: '', redirectTo: '/intro', pathMatch: 'full' },
       { path: '**', redirectTo: '/intro' },
     ]),
   ],
-  providers: [PlayersService],
+  providers: [PlayersService, TetrisService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

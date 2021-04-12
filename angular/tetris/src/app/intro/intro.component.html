@@ -27,12 +27,12 @@
             </div>
 
             <div class="form-group mt-1">
-                <label for="email-input">Enter Your e-mail:</label>
-                <input ngModel #email="ngModel" id="email-input" name="email" class="form-control" type="text" required email="true" />
+                <label for="token-input">Enter Your ID (token):</label>
+                <input ngModel #token="ngModel" id="token-input" name="token" class="form-control" type="text" required />
                 <!-- Errors section -->
-                <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
-                    <div *ngIf="email.errors.required">Your e-mail is required.</div>
-                    <div *ngIf="email.errors.email">Please enter your valid e-mail.</div>
+                <div class="alert alert-danger" *ngIf="token.touched && token.invalid">
+                    <div *ngIf="token.errors.required">Your token is required.</div>
+                    <div *ngIf="token.errors.invalidToken">Please enter your valid token.</div>
                 </div>
             </div>
 

@@ -1,8 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { AbstractControl, FormGroup, NgForm, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IPlayer } from '../player';
-import { PlayersService } from '../players.service';
+import { Score } from '../models/score';
+import { TetrisService } from '../tetris.service';
 
 @Component({
   selector: 'app-intro',
@@ -12,29 +12,32 @@ import { PlayersService } from '../players.service';
 export class IntroComponent implements OnInit
 {
   @Output() startEvent = new EventEmitter();
-  private _player: IPlayer;
+  @ViewChild('personForm') personForm: NgForm;
 
-  constructor(private _playersService: PlayersService, private _router: Router) { }
+  constructor(private _tetrisService: TetrisService, private _router: Router) { }
   ngOnInit(): void {
   }
 
   start(form: FormGroup)
   {
-    const newPlayer: IPlayer = {
-        name: form.value.name,
-        email: form.value.email,
-        best_result: 0,
-        time_played: 0,
-      };
+    const token = form.value.token;
+    const score: Score = {
+      name: form.value.name,
+      score: 0,
+    };
 
-    if( form.valid )
-    {
-      this._playersService.addPlayer(newPlayer).subscribe(player => {
-        this._player = player;
-        //this.startEvent.emit({player: this.player});
-        this._playersService.savePlayer(this._player);
-        this._router.navigate(['/game']);
+    if( form.valid ){
+      this._tetrisService.checkToken(token).subscribe(data => {
+        if(!data['success']){
+          form.get('token').setErrors({ invalidToken: true });
+        }
+        else{
+          //this.startEvent.emit({score: this._score});
+          this._tetrisService.score = score;
+          this._router.navigate(['/game']);
+        }
       });
     }
+
   }
 }

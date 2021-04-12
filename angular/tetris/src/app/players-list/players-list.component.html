@@ -4,22 +4,19 @@
         <tr>
             <th>#</th>
             <th>Name</th>
-            <th>E-mail</th>
-            <th>Best</th>
-            <th>Time</th>
-            <th>First login</th>
-            <th>Last game</th>
+            <th (click)="onSortScores()" style="cursor: pointer;">
+                Score
+                <i *ngIf="scoresSortedAZ" class="bi bi-sort-alpha-down"></i>
+                <i *ngIf="!scoresSortedAZ" class="bi bi-sort-alpha-down-alt"></i>
+            </th>
+
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let player of players">
-            <td>{{player['id']}}</td>
-            <td>{{player['name']}}</td>
-            <td>{{player['email']}}</td>
-            <td>{{player['best_result']}}</td>
-            <td>{{player['time_played']}}</td>
-            <td>{{player['created_at']}}</td>
-            <td>{{player['updated_at'] ? player['updated_at'] : '-'}}</td>
+        <tr *ngFor="let score of scores | eventsSort:'score':scoresSortedAZ; index as i">
+            <td>{{i+1}}</td>
+            <td>{{score['name']}}</td>
+            <td>{{score['score']}}</td>
         </tr>
     </tbody>
 </table>

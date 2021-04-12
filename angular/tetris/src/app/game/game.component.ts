@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener, Output, Input, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameState, TetrisCoreComponent } from 'ngx-tetris';
-import { IPlayer } from '../player';
-import { PlayersService } from '../players.service';
+import { TetrisService } from '../tetris.service';
 import { TimerComponent } from '../timer/timer.component';
 
 @Component({
@@ -12,27 +11,22 @@ import { TimerComponent } from '../timer/timer.component';
 })
 export class GameComponent implements OnInit
 {
-	points = 0;
-	history = [];
 	sortedAZ = true;
+	score = 3;
+	history = [];
 	showGameEvents = 'all';
 	gameStatus = 'The game is ready. Press SPACEBAR to start.';
 
 	@ViewChild('game') tetris: TetrisCoreComponent;
 	@ViewChild('timer') timer: TimerComponent;
 	@Output() exitEvent = new EventEmitter();
-	// @Input() player: IPlayer = { // Removed after routing.
-	// 	name: '',
-	// 	email: '',
-	// 	time_played: 0,
-	// 	best_result: 0,
-	// };
-	public player: IPlayer;
 
-	constructor(private _playersService: PlayersService, private _router: Router) {}
+	constructor(public tetrisService: TetrisService, private _router: Router) {}
 	ngOnInit(): void
 	{
-		this.player = this._playersService.loadPlayer();
+		//this.player = this._tetrisService.loadPlayer();
+		if(!this.tetrisService.score.name)
+			this._router.navigate(['/intro']);
 	}
 
 	@HostListener('window:keyup', ['$event'])
@@ -54,32 +48,34 @@ export class GameComponent implements OnInit
 		{
 			this.onGameStart();
 		}
-
-		// console.log(this.tetris);
 	}
 
-	private addGameEvent(message: String)
+	private addGameEvent(message: string)
 	{
 		this.history.push({
 			timestamp: Date.now(),
 			message: message} );
-		this.updatePlayer();
+		this.updatePlayer(message);
 	}
 
 	private incrementPoints()
 	{
-		this.points += 1;
-		if( this.points > this.player.best_result )
-			this.player.best_result = this.points;
+		this.score += 1;
 	}
 
-	private updatePlayer()
+	private updatePlayer(message: string)
 	{
-		//this.player.time_played += this.timer.getTime(); // ?????????
-		this.player.time_played = Number(this.player.time_played) + this.timer.getTime();
-		this._playersService.addPlayer(this.player).subscribe(player => {
-			this.player = player;
-		});
+		// this.player.time_played = Number(this.player.time_played) + this.timer.getTime();
+		// this._playersService.addPlayer(this.player).subscribe(player => {
+		// 	this.player = player;
+		// });
+		if( ['Game restarted.', 'Game over.', 'Game exitted.'].includes(message) ){
+			if( this.tetrisService.updateScore(this.score) ){
+				this.tetrisService.saveScore().subscribe(data => {
+					console.log(data);
+				});
+			}
+		}
 	}
 
 	onGameStart()
@@ -120,8 +116,6 @@ export class GameComponent implements OnInit
 		this.addGameEvent('Game exitted.');
 		this.tetris.actionStop();
 		this.timer.stop();
-		//this.exitEvent.emit();
-		this._playersService.savePlayer(this.player);
         this._router.navigate(['/intro']);
 	}
 

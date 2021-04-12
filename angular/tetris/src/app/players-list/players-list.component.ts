@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IPlayer } from '../player';
-import { PlayersService } from '../players.service';
+import { TetrisService } from '../tetris.service';
 
 @Component({
   selector: 'app-players-list',
@@ -9,29 +8,38 @@ import { PlayersService } from '../players.service';
 })
 export class PlayersListComponent implements OnInit
 {
-  public players = [];
-  constructor(private _playersService: PlayersService){ }
+  public scoresSortedAZ = false;
+  public scores = [];
+  constructor(private _tetrisService: TetrisService){ }
 
   ngOnInit(): void
   {
-    this._playersService.getPlayers().subscribe( (data) => {
-      this.players = data;
+    this._tetrisService.getScores().subscribe( (data) => {
+      this.scores = data;
     } );
+  }
+
+  onSortScores(): void{
+    this.scoresSortedAZ = !this.scoresSortedAZ;
+  }
+
+  onSortNames(): void{
+
   }
 
   onClick(): void
   {
-    console.log('works');
+    // console.log('works');
 
-    const newPlayer: IPlayer = {
-      name: 'test',
-      email: 'test@test.pl',
-      best_result: 0,
-      time_played: 19,
-    };
-    this._playersService.addPlayer( newPlayer ).subscribe( data => {
-      //TODO: check if player is on a list.
-      this.players.push( newPlayer );
-    } );
+    // const newPlayer: IPlayer = {
+    //   name: 'test',
+    //   email: 'test@test.pl',
+    //   best_result: 0,
+    //   time_played: 19,
+    // };
+    // this._playersService.addPlayer( newPlayer ).subscribe( data => {
+    //   //TODO: check if player is on a list.
+    //   this.players.push( newPlayer );
+    // } );
   }
 }
