@@ -21,6 +21,7 @@ export class TetrisService {
   };
 
   // http://tetris.chrum.it/docs/#/
+  // http://tetris.chrum.it/docs/swagger.json
   constructor(private http: HttpClient){
     //this.headers.append('Accept', 'application/json'); // Wrong !
   }

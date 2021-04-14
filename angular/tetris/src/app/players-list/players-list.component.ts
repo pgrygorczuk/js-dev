@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TetrisService } from '../tetris.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-players-list',
@@ -10,11 +11,18 @@ export class PlayersListComponent implements OnInit
 {
   public scoresSortedAZ = false;
   public scores = [];
+  @Input() limit = 10;
+  @Input() playerName = undefined;
   constructor(private _tetrisService: TetrisService){ }
 
   ngOnInit(): void
   {
-    this._tetrisService.getScores().subscribe( (data) => {
+    this._tetrisService.getScores()
+    .pipe( map( data => data
+      .filter(item => !this.playerName || item.name === this.playerName)
+      .slice(0, this.limit)
+    ) )
+    .subscribe( (data) => {
       this.scores = data;
     } );
   }

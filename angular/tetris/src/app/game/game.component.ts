@@ -71,8 +71,13 @@ export class GameComponent implements OnInit
 		// });
 		if( ['Game restarted.', 'Game over.', 'Game exitted.'].includes(message) ){
 			if( this.tetrisService.updateScore(this.score) ){
-				this.tetrisService.saveScore().subscribe(data => {
-					console.log(data);
+				// this.tetrisService.saveScore().subscribe(data => {
+				// 	console.log(data);
+				// });
+				this.tetrisService.saveScore().subscribe({ // observer
+					next:	(data) => console.log('Got value: ' + data),
+					error:	(err) => console.error('Error:' + err),
+					complete: () => console.log('Finished.'),
 				});
 			}
 		}
