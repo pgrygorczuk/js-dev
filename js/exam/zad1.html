@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            canvas{
+                border: 1px solid silver;
+            }
+        </style>
+    </head>
+
+    <body>
+        <canvas width="800" height="600"></canvas>
+    </body>
+
+    <script type="text/javascript">
+        class Ball{
+            constructor(x, y, canvas){
+                this.x = x;
+                this.y = y;
+                this.vx = 1;
+                this.vy = 1;
+                this.canvas = canvas;
+                this.radius = 8;
+                this.interval = null;
+                this.draw();
+            }
+            update(){
+                this.x += this.vx;
+                this.y += this.vy;
+                if( this.x + this.radius >= this.canvas.width || this.x - this.radius <= 0 ){
+                    this.vx = -this.vx;
+                }
+                if( this.y + this.radius >= this.canvas.height || this.y - this.radius <= 0 ){
+                    this.vy = -this.vy;
+                }
+            }
+            draw(style = '#000000'){
+                const ctx = this.canvas.getContext('2d');
+                ctx.strokeStyle = style;
+                ctx.beginPath();
+                ctx.arc( this.x, this.y, this.radius, 0, 2*Math.PI);
+                ctx.stroke();
+            }
+            start(speed=1){
+                const ctx = this.canvas.getContext('2d');
+                this.vx = this.vy = speed;
+                this.interval = setInterval( () => {
+                    ctx.clearRect(this.x-this.radius-2, this.y-this.radius-2, 2*this.radius+4, 2*this.radius+4);
+                    this.update();
+                    this.draw();
+                }, 20);
+            }
+            stop(){
+                clearInterval(this.interval);
+            }
+        }
+
+        const canvas = document.querySelector('canvas');
+        new Ball(400, 300, canvas).start(0.5);
+        new Ball(10, 10, canvas).start(1);
+        new Ball(200, 500, canvas).start(2);
+        new Ball(750, 20, canvas).start(4);
+
+    </script>
+
+</html>
