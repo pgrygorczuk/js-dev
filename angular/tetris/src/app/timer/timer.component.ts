@@ -1,11 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css']
 })
-export class TimerComponent implements OnInit
+export class TimerComponent implements OnInit, OnDestroy
 {
   private interval;
   public time: number = 0;
@@ -45,12 +45,12 @@ export class TimerComponent implements OnInit
     return this.time;
   }
 
-  public start()
+  public start(): void
   {
     this.interval = setInterval(this.update.bind(this), 1000);
   }
 
-  public stop()
+  public stop(): void
   {
     clearInterval(this.interval);
   }

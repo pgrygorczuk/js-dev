@@ -1,3 +1,11 @@
+<p *ngIf="autoRefresh" class="d-flex justify-content-around">
+    <span>
+        <input [(ngModel)]="autoRefreshCheckbox" (ngModelChange)="onRefreshCheckboxChange($event)" type="checkbox">
+        Autorefresh
+        <!-- <input [(ngModel)]="autoRefresh" type="number" min="1" max="30"> -->
+    </span>
+    <span>Updated {{updated | date: 'HH:mm:ss'}}</span>
+</p>
 <table class="table table-hover">
     <thead>
         <tr>

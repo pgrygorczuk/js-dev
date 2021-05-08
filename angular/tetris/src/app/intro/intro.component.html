@@ -42,7 +42,8 @@
     </div>
 
     <div class="col-lg-7">
-        <app-players-list></app-players-list>
+        <h3>Top score</h3>
+        <app-players-list [limit]="10" [autoRefresh]="30"></app-players-list>
     </div>
 
     <div class="col-12 my-4"></div>
