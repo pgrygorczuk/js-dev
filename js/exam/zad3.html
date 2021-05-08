@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            canvas{
+                border: 1px solid silver;
+            }
+        </style>
+    </head>
+
+    <body>
+        <canvas width="1024" height="768"></canvas>
+    </body>
+
+    <script src="GameOfLife.js"></script>
+    <script type="text/javascript">
+
+        const canvas  = document.querySelector('canvas');
+        canvas.width  = Math.max( canvas.width, window.innerWidth-25 );
+        canvas.height = Math.max( canvas.height, window.innerHeight-25 );
+
+        const ctx  = canvas.getContext('2d');
+        const game = new GameOfLife(canvas.width, canvas.height);
+
+        const interval = setInterval( () => {
+
+            game.tick();
+            game.draw(ctx);
+
+        }, 200 );
+
+    </script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            canvas{
+                border: 1px solid silver;
+            }
+        </style>
+    </head>
+
+    <body>
+        <canvas width="800" height="600"></canvas>
+        <p>Click on the canvas to add more balls.</p>
+    </body>
+
+    <script src="Bouncy.js"></script>
+    <script type="text/javascript">
+
+        let actors = [];
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.addEventListener('click', function(event) {
+            const x = event.layerX, y = event.layerY;
+            actors.push( new Ball(x, y, canvas) );
+        }, false);
+
+        actors.push( new Obstacle([
+            [400, 0], [600, 200], [800, 200], [800, 0] ]) );
+        actors.push( new Obstacle([
+            [200, 400], [250, 450], [200, 500], [150, 450] ]) );
+        actors.push( new RandomMovementField(400, 400, [actors[0], actors[1]]) );
+        actors.push( new Ball(100, 100, canvas) );
+
+        const interval = setInterval( () => {
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for(actor of actors){
+                actor.handleCollisions(actors); //TODO: Brak wykrycia kolizji vice versa.
+                actor.update();
+                actor.draw(canvas);
+            }
+
+        }, 20 );
+
+    </script>
+
+</html>
