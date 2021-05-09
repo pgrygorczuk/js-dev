@@ -46,12 +46,13 @@ export function TodoList({tasks, setTasks, filter})
                 <tbody>
                     {tasks
                     .filter( (value) => {
-                        return filter==='all' ||
-                            value.completed && filter==='completed' ||
-                            !value.completed && filter==='not-completed';
+                        return (
+                            filter==='all' ||
+                            (value.completed && filter==='completed') ||
+                            (!value.completed && filter==='not-completed'));
                     } )
                     .map( (value, index) => {
-                        return <TodoRow task={value} index={index}
+                        return <TodoRow key={index} task={value} index={index}
                             onDelete={handleDelete}
                             onEdit={handleEdit}
                             onCheck={handleCheck} />;

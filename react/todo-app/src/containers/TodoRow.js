@@ -1,13 +1,12 @@
 import * as React from 'react';
+import { Button } from '../components/Button.js';
 
 export function TodoRow({task, index, onDelete, onEdit, onCheck})
 {
     const [editMode, setEditMode] = React.useState(false);
 
-    function handleKeyPress(e)
-    {
-        if( e.key === 'Enter' )
-        {
+    function handleKeyPress(e){
+        if( e.key === 'Enter' ){
             setEditMode(false);
         }
     }
@@ -31,12 +30,8 @@ export function TodoRow({task, index, onDelete, onEdit, onCheck})
                 }
             </td>
             <td>
-                <button className="btn btn-outline-dark mx-1" onClick={e => setEditMode(!editMode)}>
-                    <i className="bi bi-pencil"></i>
-                </button>
-                <button className="btn btn-outline-dark" onClick={e => onDelete(task.index)}>
-                    <i className="bi bi-trash"></i>
-                </button>
+                <Button iconClass="bi bi-pencil" onClick={e => setEditMode(!editMode)} />
+                <Button iconClass="bi bi-trash" onClick={e => onDelete(task.index)} />
             </td>
         </tr>
     );
