@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, HostListener, Output, Input, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GameState, TetrisCoreComponent } from 'ngx-tetris';
 import { TetrisService } from '../tetris.service';
 import { TimerComponent } from '../timer/timer.component';
@@ -16,17 +16,24 @@ export class GameComponent implements OnInit
 	history = [];
 	showGameEvents = 'all';
 	gameStatus = 'The game is ready. Press SPACEBAR to start.';
+	colorPalette = undefined;
 
 	@ViewChild('game') tetris: TetrisCoreComponent;
 	@ViewChild('timer') timer: TimerComponent;
 	@Output() exitEvent = new EventEmitter();
 
-	constructor(public tetrisService: TetrisService, private _router: Router) {}
+	constructor(
+		public tetrisService: TetrisService,
+		private _router: Router,
+		private _activatedRoute: ActivatedRoute ) {
+			this.colorPalette = this._activatedRoute.snapshot.params.colors;
+		}
+	
 	ngOnInit(): void
 	{
-		//this.player = this._tetrisService.loadPlayer();
-		if(!this.tetrisService.score.name)
-			this._router.navigate(['/intro']);
+		// This functionality has been replaced with PlayerDataGuard.
+		// if(!this.tetrisService.score.name)
+		// 	this._router.navigate(['/intro']);
 	}
 
 	@HostListener('window:keyup', ['$event'])
@@ -81,6 +88,10 @@ export class GameComponent implements OnInit
 				});
 			}
 		}
+	}
+
+	onColorChange(){
+		this._router.navigate(['/game/'+this.colorPalette]);
 	}
 
 	onGameStart()

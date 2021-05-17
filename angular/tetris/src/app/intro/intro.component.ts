@@ -13,18 +13,33 @@ export class IntroComponent implements OnInit
 {
   @Output() startEvent = new EventEmitter();
   @ViewChild('personForm') personForm: NgForm;
+  //personForm: FormGroup;
 
   constructor(private _tetrisService: TetrisService, private _router: Router) { }
   ngOnInit(): void {
   }
 
+  // private initializeForm(): void{
+  //   this.personForm = this.fb.group({
+  //     name: '',
+  //     token: '',
+  //     colorPalette: 'normal',
+  //   });
+  // }
+  // onSubmit(): void{
+  //   console.log(this.personForm);
+  // }
+
   start(form: FormGroup)
   {
     const token = form.value.token;
+    const colorPalette = form.value.colorPalette;
     const score: Score = {
       name: form.value.name,
       score: 0,
     };
+
+    //console.log(form);
 
     if( form.valid ){
       this._tetrisService.checkToken(token).subscribe(data => {
@@ -34,7 +49,8 @@ export class IntroComponent implements OnInit
         else{
           //this.startEvent.emit({score: this._score});
           this._tetrisService.score = score;
-          this._router.navigate(['/game']);
+          this._tetrisService.colorPalette = colorPalette;
+          this._router.navigate(['/game/'+colorPalette]);
         }
       });
     }

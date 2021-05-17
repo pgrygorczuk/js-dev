@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="form-group mt-1">
+            <div class="form-group mt-2">
                 <label for="token-input">Enter Your ID (token):</label>
                 <input ngModel #token="ngModel" id="token-input" name="token" class="form-control" type="text" required />
                 <!-- Errors section -->
@@ -34,6 +34,14 @@
                     <div *ngIf="token.errors.required">Your token is required.</div>
                     <div *ngIf="token.errors.invalidToken">Please enter your valid token.</div>
                 </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <label for="color-palette-select">Color palette:</label>
+                <select ngModel #colorPalette="ngModel" id="color-palette-select" name="colorPalette" class="form-select" type="input" required>
+                    <option value="normal">Normal</option>
+                    <option value="high-contrast">High contrast</option>
+                </select>
             </div>
 
             <button (click)="start(personForm.form)" class="btn btn-outline-secondary my-3 float-right">Start</button>

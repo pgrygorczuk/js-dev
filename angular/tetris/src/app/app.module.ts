@@ -15,6 +15,7 @@ import { PlayersListComponent } from './players-list/players-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { TetrisService } from './tetris.service';
+import { PlayerDataGuard } from './player-data-guard.service';
 
 @NgModule({
   declarations: [ // Remember to add here your components !
@@ -34,7 +35,11 @@ import { TetrisService } from './tetris.service';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'intro', component: IntroComponent },
-      { path: 'game', component: GameComponent },
+      {
+        path: 'game/:colors',
+        component: GameComponent,
+        canActivate: [PlayerDataGuard],
+      },
       { path: 'scores', component: ScoresComponent },
       { path: '', redirectTo: '/intro', pathMatch: 'full' },
       { path: '**', redirectTo: '/intro' },

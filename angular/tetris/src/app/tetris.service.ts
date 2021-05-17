@@ -15,6 +15,7 @@ export class TetrisService {
     'Accept': 'application/json',
   });
   private token: string;
+  public colorPalette = 'normal';
   public score: Score = {
     name: 'P.G.', // REMOVE ON PROD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     score: 0,
@@ -24,6 +25,35 @@ export class TetrisService {
   // http://tetris.chrum.it/docs/swagger.json
   constructor(private http: HttpClient){
     //this.headers.append('Accept', 'application/json'); // Wrong !
+  }
+
+  saveToLS(){
+    const data = {
+      score: this.score,
+      color: this.colorPalette,
+    };
+    localStorage.setItem('tetris', JSON.stringify(data));
+  }
+
+  loadFromLS(){
+    let data = localStorage.getItem('tetris');
+    if(data){
+      data = JSON.parse(data);
+      this.colorPalette = data['color'];
+      this.score = data['score'];
+      return data;
+    }
+    else{
+      return false;
+    }
+  }
+
+  clearLS(){
+    localStorage.removeItem('tetris');
+  }
+
+  isPlayerSet(){
+    return Boolean(this.score.name);
   }
 
   updateScore(_score: number): boolean{

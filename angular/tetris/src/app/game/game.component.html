@@ -7,7 +7,7 @@
     </div>
 
 	<div class="col-md-5 col-xl-6 d-flex justify-content-center">
-		<tetris-core #game
+		<tetris-core #game class="{{colorPalette==='high-contrast'? 'black-and-white': ''}}"
 			(lineCleared)="onLineCleared()"
 			(gameOver)="onGameOver()" >
 		</tetris-core>
@@ -17,11 +17,19 @@
 
 		<h4>Welcome, {{tetrisService.score.name}}. <small>Your result: {{tetrisService.score.score}}</small></h4>
 		<p>{{gameStatus}}</p>
-		<button class="btn btn-outline-dark mx-1" (click)="onGameStart()">
-			{{ game.state == 1 ? 'Pause': 'Start'}}
-		</button>
-		<button class="btn btn-outline-dark mx-1" (click)="onGameReset()">Restart</button>
-		<button class="btn btn-outline-danger mx-1" (click)="onGameExit()">Exit game</button>
+		<div class="d-flex flex-row">
+			<button class="btn btn-outline-dark mx-1" (click)="onGameStart()">
+				{{ game.state == 1 ? 'Pause': 'Start'}}
+			</button>
+			<button class="btn btn-outline-dark mx-1" (click)="onGameReset()">Restart</button>
+			<button class="btn btn-outline-danger mx-1" (click)="onGameExit()">Exit game</button>
+			<div class="form-group">
+				<select [(ngModel)]="colorPalette" id="color-select" class="form-select" (change)="onColorChange()">
+					<option value="normal">Normal</option>
+					<option value="high-contrast">Hight contrast</option>
+				</select>
+			</div>
+		</div>
 		<hr>
 		<div style="font-size: 1.25rem;" class="d-flex justify-content-around">
 			<p>Score: <b>{{score}}</b></p>
