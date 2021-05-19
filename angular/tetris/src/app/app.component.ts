@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IPlayer } from './player';
 
 @Component({
   selector: 'app-root',

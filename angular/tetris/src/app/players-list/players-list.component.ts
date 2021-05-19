@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { TetrisService } from '../tetris.service';
+import { PlayerService } from '../player.service';
 import { map } from 'rxjs/operators';
 import { interval, Subscription } from 'rxjs';
 
@@ -19,7 +19,7 @@ export class PlayersListComponent implements OnInit, OnDestroy
   @Input() autoRefresh = 0;
   private _sub$: Subscription;
 
-  constructor(private _tetrisService: TetrisService){ }
+  constructor(private _tetrisService: PlayerService){ }
 
   ngOnInit(): void{
     this.loadData();

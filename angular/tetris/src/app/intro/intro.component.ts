@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/cor
 import { AbstractControl, FormGroup, NgForm, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Score } from '../models/score';
-import { TetrisService } from '../tetris.service';
+import { PlayerService } from '../player.service';
 
 @Component({
   selector: 'app-intro',
@@ -15,7 +15,10 @@ export class IntroComponent implements OnInit
   @ViewChild('personForm') personForm: NgForm;
   //personForm: FormGroup;
 
-  constructor(private _tetrisService: TetrisService, private _router: Router) { }
+  constructor(private _playerService: PlayerService, private _router: Router) {
+    this._playerService.clearLS();
+  }
+
   ngOnInit(): void {
   }
 
@@ -42,14 +45,15 @@ export class IntroComponent implements OnInit
     //console.log(form);
 
     if( form.valid ){
-      this._tetrisService.checkToken(token).subscribe(data => {
+      this._playerService.checkToken(token).subscribe(data => {
         if(!data['success']){
           form.get('token').setErrors({ invalidToken: true });
         }
         else{
           //this.startEvent.emit({score: this._score});
-          this._tetrisService.score = score;
-          this._tetrisService.colorPalette = colorPalette;
+          this._playerService.score = score;
+          this._playerService.colorPalette = colorPalette;
+          this._playerService.saveToLS();
           this._router.navigate(['/game/'+colorPalette]);
         }
       });

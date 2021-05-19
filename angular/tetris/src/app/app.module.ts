@@ -10,11 +10,10 @@ import { TetrisCoreModule } from 'ngx-tetris';
 import { EventsFilterPipe } from './events-filter.pipe';
 import { TimerComponent } from './timer/timer.component';
 import { EventsSortPipe } from './events-sort.pipe';
-import { PlayersService } from './players.service';
 import { PlayersListComponent } from './players-list/players-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { TetrisService } from './tetris.service';
+import { PlayerService } from './player.service';
 import { PlayerDataGuard } from './player-data-guard.service';
 
 @NgModule({
@@ -36,16 +35,25 @@ import { PlayerDataGuard } from './player-data-guard.service';
     RouterModule.forRoot([
       { path: 'intro', component: IntroComponent },
       {
+        path: 'game',
+        component: GameComponent,
+        canActivate: [PlayerDataGuard],
+      },
+      {
         path: 'game/:colors',
         component: GameComponent,
         canActivate: [PlayerDataGuard],
       },
-      { path: 'scores', component: ScoresComponent },
+      {
+        path: 'scores',
+        component: ScoresComponent,
+        canActivate: [PlayerDataGuard],
+      },
       { path: '', redirectTo: '/intro', pathMatch: 'full' },
       { path: '**', redirectTo: '/intro' },
     ]),
   ],
-  providers: [PlayersService, TetrisService],
+  providers: [PlayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

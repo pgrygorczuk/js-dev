@@ -4,11 +4,12 @@ import { Injectable } from '@angular/core';
 import { AuthTokenResponse } from './models/auth-token-response';
 import { Score } from './models/score';
 import { AuthTokenRequest } from './models/auth-token-request';
+import { Player } from './models/player';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TetrisService {
+export class PlayerService {
 
   private url = 'http://tetris.chrum.it/';
   private headers = new HttpHeaders({
@@ -17,20 +18,22 @@ export class TetrisService {
   private token: string;
   public colorPalette = 'normal';
   public score: Score = {
-    name: 'P.G.', // REMOVE ON PROD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    name: '',
     score: 0,
   };
 
   // http://tetris.chrum.it/docs/#/
   // http://tetris.chrum.it/docs/swagger.json
   constructor(private http: HttpClient){
-    //this.headers.append('Accept', 'application/json'); // Wrong !
+    this.loadFromLS();
+    //console.log(this.score.name);
   }
 
   saveToLS(){
     const data = {
       score: this.score,
       color: this.colorPalette,
+      token: this.token,
     };
     localStorage.setItem('tetris', JSON.stringify(data));
   }
@@ -41,6 +44,7 @@ export class TetrisService {
       data = JSON.parse(data);
       this.colorPalette = data['color'];
       this.score = data['score'];
+      this.token = data['token'];
       return data;
     }
     else{
@@ -50,6 +54,7 @@ export class TetrisService {
 
   clearLS(){
     localStorage.removeItem('tetris');
+    this.score.name = '';
   }
 
   isPlayerSet(){

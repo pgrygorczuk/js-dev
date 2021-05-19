@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TetrisService } from './tetris.service';
+import { PlayerService } from './player.service';
 
 // ng generate service playerDataGuard
 
@@ -9,10 +9,10 @@ import { TetrisService } from './tetris.service';
   providedIn: 'root'
 })
 export class PlayerDataGuard implements CanActivate {
-  constructor(private __tetrisService: TetrisService) { }
+  constructor(private __playerService: PlayerService) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
-    //return this.__tetrisService.isPlayerSet();
-    return true;
+    
+    return this.__playerService.isPlayerSet();
   }
   
 }

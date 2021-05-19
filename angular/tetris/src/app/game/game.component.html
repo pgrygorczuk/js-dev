@@ -7,7 +7,7 @@
     </div>
 
 	<div class="col-md-5 col-xl-6 d-flex justify-content-center">
-		<tetris-core #game class="{{colorPalette==='high-contrast'? 'black-and-white': ''}}"
+		<tetris-core #game class="{{playerService.colorPalette==='high-contrast'? 'black-and-white': ''}}"
 			(lineCleared)="onLineCleared()"
 			(gameOver)="onGameOver()" >
 		</tetris-core>
@@ -15,7 +15,7 @@
 
 	<div class="col-md-7 col-xl-6">
 
-		<h4>Welcome, {{tetrisService.score.name}}. <small>Your result: {{tetrisService.score.score}}</small></h4>
+		<h4>Welcome, {{playerService.score.name}}. <small>Your result: {{playerService.score.score}}</small></h4>
 		<p>{{gameStatus}}</p>
 		<div class="d-flex flex-row">
 			<button class="btn btn-outline-dark mx-1" (click)="onGameStart()">
@@ -24,7 +24,7 @@
 			<button class="btn btn-outline-dark mx-1" (click)="onGameReset()">Restart</button>
 			<button class="btn btn-outline-danger mx-1" (click)="onGameExit()">Exit game</button>
 			<div class="form-group">
-				<select [(ngModel)]="colorPalette" id="color-select" class="form-select" (change)="onColorChange()">
+				<select [(ngModel)]="playerService.colorPalette" id="color-select" class="form-select" (change)="onColorChange()">
 					<option value="normal">Normal</option>
 					<option value="high-contrast">Hight contrast</option>
 				</select>

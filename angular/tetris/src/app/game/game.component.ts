@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener, Output, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameState, TetrisCoreComponent } from 'ngx-tetris';
-import { TetrisService } from '../tetris.service';
+import { PlayerService } from '../player.service';
 import { TimerComponent } from '../timer/timer.component';
 
 @Component({
@@ -12,21 +12,25 @@ import { TimerComponent } from '../timer/timer.component';
 export class GameComponent implements OnInit
 {
 	sortedAZ = true;
-	score = 3;
+	score = 0;
 	history = [];
 	showGameEvents = 'all';
 	gameStatus = 'The game is ready. Press SPACEBAR to start.';
-	colorPalette = undefined;
 
 	@ViewChild('game') tetris: TetrisCoreComponent;
 	@ViewChild('timer') timer: TimerComponent;
 	@Output() exitEvent = new EventEmitter();
 
 	constructor(
-		public tetrisService: TetrisService,
+		public playerService: PlayerService,
 		private _router: Router,
 		private _activatedRoute: ActivatedRoute ) {
-			this.colorPalette = this._activatedRoute.snapshot.params.colors;
+			if(this._activatedRoute.snapshot.params.colors){
+				this.playerService.colorPalette = this._activatedRoute.snapshot.params.colors;
+			}
+			else{
+				this._router.navigate(['/game/'+this.playerService.colorPalette]);
+			}
 		}
 	
 	ngOnInit(): void
@@ -77,11 +81,11 @@ export class GameComponent implements OnInit
 		// 	this.player = player;
 		// });
 		if( ['Game restarted.', 'Game over.', 'Game exitted.'].includes(message) ){
-			if( this.tetrisService.updateScore(this.score) ){
+			if( this.playerService.updateScore(this.score) ){
 				// this.tetrisService.saveScore().subscribe(data => {
 				// 	console.log(data);
 				// });
-				this.tetrisService.saveScore().subscribe({ // observer
+				this.playerService.saveScore().subscribe({ // observer
 					next:	(data) => console.log('Got value: ' + data),
 					error:	(err) => console.error('Error:' + err),
 					complete: () => console.log('Finished.'),
@@ -91,7 +95,8 @@ export class GameComponent implements OnInit
 	}
 
 	onColorChange(){
-		this._router.navigate(['/game/'+this.colorPalette]);
+		this._router.navigate(['/game/'+this.playerService.colorPalette]);
+		this.playerService.saveToLS();
 	}
 
 	onGameStart()
