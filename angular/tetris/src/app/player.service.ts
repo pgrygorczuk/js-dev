@@ -11,7 +11,7 @@ import { Player } from './models/player';
 })
 export class PlayerService {
 
-  private url = 'http://tetris.chrum.it/';
+  private url = 'https://tetris.chrum.it/';
   private headers = new HttpHeaders({
     'Accept': 'application/json',
   });
@@ -33,7 +33,7 @@ export class PlayerService {
     const data = {
       score: this.score,
       color: this.colorPalette,
-      token: this.token,
+      //token: this.token,
     };
     localStorage.setItem('tetris', JSON.stringify(data));
   }
@@ -44,7 +44,7 @@ export class PlayerService {
       data = JSON.parse(data);
       this.colorPalette = data['color'];
       this.score = data['score'];
-      this.token = data['token'];
+      //this.token = data['token'];
       return data;
     }
     else{

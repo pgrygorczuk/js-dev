@@ -11,40 +11,64 @@
             Wykorzystano bibiotekę <a href="https://www.npmjs.com/package/ngx-tetris">ngx-tetris</a>.</p>
         <p>Please fill form to start the game.</p>
         <hr>
-        <form #personForm="ngForm">
+        <!-- <form #personForm="ngForm"> -->
+        <form [formGroup]="personForm" (submit)="onSubmit(personForm)">
 
             <div class="form-group">
                 <label for="name-input">Enter Your name:</label>
-                <input ngModel #name="ngModel" id="name-input" name="name"
-                    class="form-control" type="text" required minlength="3" />
+                <!-- <input ngModel #name="ngModel" id="name-input" name="name" class="form-control" type="text" required minlength="3" /> -->
+                <input [formControlName]="'name'" id="name-input" name="name" class="form-control" type="text" />
                 <!-- Errors section -->
-                <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
-                    <div *ngIf="name.errors.required">Your name is required.</div>
-                    <div *ngIf="name.errors.minlength">
-                        Your name should be mininum {{name.errors.minlength.requiredLength}} characters.</div>
-                    <div *ngIf="name.errors.pattern">Your name should start with a letter.</div>
+                <div class="alert alert-danger" *ngIf="(personForm.controls.name.touched || submitted) && personForm.controls.name.errors">
+                    <div *ngIf="personForm.controls.name.errors?.required">Your name is required.</div>
+                    <div *ngIf="personForm.controls.name.errors?.minlength">
+                        Your name should be mininum {{personForm.controls.name.errors.minlength.requiredLength}} characters.</div>
+                    <div *ngIf="personForm.controls.name.errors?.pattern">Your name should start with a letter.</div>
                 </div>
             </div>
 
             <div class="form-group mt-2">
                 <label for="token-input">Enter Your ID (token):</label>
-                <input ngModel #token="ngModel" id="token-input" name="token" class="form-control" type="text" required />
+                <!-- <input ngModel #token="ngModel" id="token-input" name="token" class="form-control" type="text" required /> -->
+                <input [formControlName]="'token'" id="token-input" name="token" class="form-control" type="text" />
                 <!-- Errors section -->
-                <div class="alert alert-danger" *ngIf="token.touched && token.invalid">
-                    <div *ngIf="token.errors.required">Your token is required.</div>
-                    <div *ngIf="token.errors.invalidToken">Please enter your valid token.</div>
+                <div class="alert alert-danger" *ngIf="(personForm.controls.token.touched || submitted) && personForm.controls.token.errors">
+                    <div *ngIf="personForm.controls.token.errors?.required">Your token is required.</div>
+                    <div *ngIf="personForm.controls.token.errors?.minlength">
+                        Your token should be mininum {{personForm.controls.token.errors.minlength.requiredLength}} characters.</div>
+                    <div *ngIf="personForm.controls.token.errors?.invalidToken">Please enter your valid token.</div>
                 </div>
             </div>
 
             <div class="form-group mt-2">
                 <label for="color-palette-select">Color palette:</label>
-                <select ngModel #colorPalette="ngModel" id="color-palette-select" name="colorPalette" class="form-select" type="input" required>
+                <!-- <select ngModel #colorPalette="ngModel" id="color-palette-select" name="colorPalette" class="form-select" type="input" required> -->
+                <select [formControlName]="'colorPalette'" id="color-palette-select" name="colorPalette" class="form-select" type="input">
                     <option value="normal">Normal</option>
                     <option value="high-contrast">High contrast</option>
                 </select>
+                <!-- Errors section -->
+                <div class="alert alert-danger" *ngIf="personForm.controls.colorPalette.errors">
+                    <div *ngIf="personForm.controls.colorPalette.errors?.required">Please choose preffered colors palette.</div>
+                </div>
             </div>
 
-            <button (click)="start(personForm.form)" class="btn btn-outline-secondary my-3 float-right">Start</button>
+            <p *ngIf="getColorPalette() === 'normal'">
+                <span style='color: blue'>C</span>
+                <span style='color: red'>O</span>
+                <span style='color: darkorange'>L</span>
+                <span style='color: blue'>O</span>
+                <span style='color: green'>R</span>
+                <span style='color: red'>S</span>
+            </p>
+            <p *ngIf="getColorPalette() !== 'normal'">
+                <span style='color: black'>BLACK & </span>
+                <span style='color: silver'>WHITE</span>
+            </p>
+
+            <!-- <button (click)="start(personForm.form)" class="btn btn-outline-secondary my-3 float-right">Start</button> -->
+            <button class="btn btn-outline-dark my-3 float-start" type="submit">Start</button>
+            <button class="btn btn-outline-dark my-3 float-end" (click)="reset()">Reset</button>
 
         </form>
     </div>
