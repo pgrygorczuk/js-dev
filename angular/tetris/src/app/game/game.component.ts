@@ -125,12 +125,14 @@ export class GameComponent implements OnInit
 	onGameReset(){
 		this.tetris.actionReset();
 		this.addGameEvent('Game restarted.');
+		this.score = 0;
 	}
 
 	onGameOver(){
 		this.addGameEvent('Game over.');
 		this.gameStatus = 'Game over. Press RESTART button to play again.';
 		this.timer.stop();
+		this.score = 0;
 	}
 
 	onGameExit(){

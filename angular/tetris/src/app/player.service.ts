@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { AuthTokenResponse } from './models/auth-token-response';
 import { Score } from './models/score';
 import { AuthTokenRequest } from './models/auth-token-request';
-import { Player } from './models/player';
 
 @Injectable({
   providedIn: 'root'

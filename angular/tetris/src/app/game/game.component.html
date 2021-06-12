@@ -15,7 +15,13 @@
 
 	<div class="col-md-7 col-xl-6">
 
-		<h4>Welcome, {{playerService.score.name}}. <small>Your result: {{playerService.score.score}}</small></h4>
+		<h4>
+			Welcome, {{playerService.score.name}}.
+			<small>
+				Your result:
+				{{playerService.score.score > score? playerService.score.score: score}}
+			</small>
+		</h4>
 		<p>{{gameStatus}}</p>
 		<div class="d-flex flex-row">
 			<button class="btn btn-outline-dark mx-1" (click)="onGameStart()">

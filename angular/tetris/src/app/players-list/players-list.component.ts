@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { PlayerService } from '../player.service';
+import { Score } from '../models/score';
 import { map } from 'rxjs/operators';
 import { interval, Subscription } from 'rxjs';
 
@@ -19,7 +20,7 @@ export class PlayersListComponent implements OnInit, OnDestroy
   @Input() autoRefresh = 0;
   private _sub$: Subscription;
 
-  constructor(private _tetrisService: PlayerService){ }
+  constructor(private _playerService: PlayerService){ }
 
   ngOnInit(): void{
     this.loadData();
@@ -46,9 +47,10 @@ export class PlayersListComponent implements OnInit, OnDestroy
   }
 
   private loadData(): void{
-    this._tetrisService.getScores()
+    this._playerService.getScores()
     .pipe( map( data => data
       .filter(item => !this.playerName || item.name === this.playerName)
+      .sort((a, b) => b.score - a.score) // Sorts descending to get best scores.
       .slice(0, this.limit)
     ) )
     .subscribe( (data) => {
