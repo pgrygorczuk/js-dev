@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "646c3867-c7b9-4918-87e4-24fb839cd5e5",
+		"name": "Node.tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Is response ok\", function(){\r",
+							"    //pm.expect(x).to.eql(100);\r",
+							"    pm.expect(pm.response.code).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Is response collection with 200 elements\", function(){\r",
+							"    let respJson = pm.response.json();\r",
+							"    pm.expect(respJson.length).to.eql(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Is response time below 100ms\", function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has string\", function(){\r",
+							"    console.log(pm.response.responseTime);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"// To run all tests in Collection click on collection name and push RUN.\r",
+							"// Second way is Runner in rigth down corner of the screen. Then drag Collection into center area.\r",
+							"\r",
+							"// Obsolete syntax.\r",
+							"postman.test(\"Sth\", function(){\r",
+							"\r",
+							"});\r",
+							"\r",
+							"// This is usefull alternative email for testing.\r",
+							"// imienazwisko+randomstring@gmail.com -translated-> imienazwisko@gmail.com\r",
+							"// imie.nazwisko@gmail.com -> imienazwisko@gmail.com (without dot)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/todos",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

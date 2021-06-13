@@ -1,0 +1,21 @@
+html
+    head
+        title My first app with pug template
+        script(src='myscript.js')
+    body
+        h1= header
+        h1 #{header}
+        p1= paragraphText
+        p To jest jakiś tekst i tutaj powinna być wartość jakiejś zmiennej: #{paragraphText}
+
+        if showHiddenText
+            div(style='color: orangered') My hidden text
+        else
+            div My ordinary text
+
+        ul
+            each val in letters
+                li(style="background-color: silver")= val
+            
+        img(src="https://asia.olympus-imaging.com/content/000107507.jpg", alt="tukan")
+
