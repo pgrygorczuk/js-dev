@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { TodoForm } from './TodoForm.js';
 import { TodoList } from './TodoList.js';
+import { Button } from "../components/Button";
+import { authContext } from '../components/AuthProvider.js';
 
 export function TodoApp()
 {
@@ -15,7 +17,6 @@ export function TodoApp()
             }
         });
         React.useEffect( () => {
-            console.log('Render');
             window.localStorage.setItem(key, JSON.stringify(value));
         }, [value, setValue, key]);
         return [value, setValue];
@@ -43,6 +44,7 @@ export function TodoApp()
     const [filter, setFilter] = useLocalStorageState('filter', 'all');
     const [lastId, setLastId] = useLocalStorageState('lastId', 0);
     const data = useFetch('https://jsonplaceholder.typicode.com/users/1/todos');
+    const { signout } = React.useContext(authContext);
 
     const memoValue = React.useMemo( () => {
         return data.map( (item) => {
@@ -59,12 +61,15 @@ export function TodoApp()
 
     function handleAdd(name){
         if( Boolean(name) ){
-            setTasks( [...tasks, {index: Date.now(), name: name, completed: false}] );
+            setTasks( [...tasks, {index: lastId, name: name, completed: false}] );
+            setLastId(lastId+1);
         }            
     }
 
     return (
         <React.Fragment>
+            <Button onClick={e => { signout(); }} text="Logout" />
+            <hr />
             <TodoForm onAdd={handleAdd}
                       filter={filter}
                       setFilter={setFilter}

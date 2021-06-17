@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export function Button({onClick, iconClass, text})
 {
-    // Dodaje spacje miedzy ikonka a tekstem.
+    // Adds space between icon and text.
     if(iconClass && text){
         text = ' ' + text;
     }

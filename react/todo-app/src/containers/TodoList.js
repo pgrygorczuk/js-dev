@@ -28,7 +28,7 @@ export function TodoList({tasks, setTasks, filter})
             return task;
         } );
         setTasks( newTasks );
-        console.log(newTasks);
+        //console.log(newTasks);
     }
 
     return (

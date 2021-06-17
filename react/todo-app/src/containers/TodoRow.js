@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Button } from '../components/Button.js';
+import { Link } from "react-router-dom";
 
 
 export function TodoRow({task, index, onDelete, onEdit, onCheck})
 {
     const initialState = {
-        editMode: false
+        editMode: false,
     };
 
     function reducer(state, action){
@@ -19,6 +20,9 @@ export function TodoRow({task, index, onDelete, onEdit, onCheck})
             case 'DELETE':
                 onDelete(action.payload);
                 return state;
+            case 'TOGGLE_COMPLETED':
+                onCheck(action.payload.index, action.payload.completed);
+                return state;
             default:
                 return state;
         }
@@ -26,39 +30,36 @@ export function TodoRow({task, index, onDelete, onEdit, onCheck})
 
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
-    function edit(){
-        dispatch({ type: 'EDIT', payload: !state.editMode });
-    }
-
-    function del(index){
-        dispatch({ type: 'DELETE', payload: index });
-    }
-
-    //console.log(state);
-
     return (
         <tr key={index}>
             <td>{index+1}.</td>
             <td>
                 <input type="checkbox"
                     checked={task.completed}
-                    onChange={e => onCheck(task.index, e.target.checked)} />
+                    onChange={e => dispatch({
+                        type: 'TOGGLE_COMPLETED',
+                        payload: {
+                            index: task.index,
+                            completed: e.target.checked
+                        }
+                    })} />
                 {/* {task.index} */}
             </td>
             <td>
                 {state.editMode ?
                     <input type="text" value={task.name}
                         onChange={e => onEdit(task.index, e.target.value)}
-                        onKeyPress={e => e.key==='Enter'? dispatch({ type: 'EDIT' }) : undefined} />
+                        onKeyPress={e => e.key==='Enter'? dispatch({ type: 'EDIT', payload: false }) : undefined} />
                     :
                     task.name
                 }
             </td>
-            <td>
-                <Button iconClass="bi bi-pencil" onClick={ e => edit() } />
-                <Button iconClass="bi bi-trash" onClick={ e => del(task.index) } />
-                {/* <Button iconClass="bi bi-pencil" onClick={e => setEditMode(!editMode)} />
-                <Button iconClass="bi bi-trash" onClick={e => onDelete(task.index)} /> */}
+            <td className="d-flex">
+                <Link to={ `/task/${task.index}` }>
+                    <Button iconClass="bi bi-info-circle" />
+                </Link>
+                <Button iconClass="bi bi-pencil" onClick={ e => dispatch({ type: 'EDIT', payload: !state.editMode }) } />
+                <Button iconClass="bi bi-trash" onClick={ e => dispatch({ type: 'DELETE', payload: task.index }) } />
             </td>
         </tr>
     );
