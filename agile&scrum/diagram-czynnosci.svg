@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="DiagramCzynności.svg"
+   viewBox="0 0 595.27557 841.88977"
+   id="svg150"
+   height="841.88977"
+   width="595.27557"
+   version="1.1">
+  <metadata
+     id="metadata154">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:current-layer="svg150"
+     inkscape:window-maximized="1"
+     inkscape:window-y="712"
+     inkscape:window-x="3832"
+     inkscape:cy="434.66708"
+     inkscape:cx="354.75721"
+     inkscape:zoom="1.6932469"
+     inkscape:bbox-paths="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-bbox="true"
+     showgrid="false"
+     id="namedview152"
+     inkscape:window-height="1417"
+     inkscape:window-width="2498"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <path
+     d="M 433.5948,685.421 A 14.1732,14.1732 0 0 1 447.768,699.5942 14.1732,14.1732 0 1 1 433.5948,685.421 Z"
+     style="fill:none;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     id="path2" />
+  <path
+     d="m 433.5947,690.4828 a 9.1114,9.1114 0 0 1 9.1113,9.1113 9.1114,9.1114 0 1 1 -9.1113,-9.1113 z"
+     style="fill:#1b1918;fill-rule:evenodd;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     id="path4" />
+  <path
+     id="path7"
+     style="fill:#1b1918;fill-rule:evenodd;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     d="m 311.811,120.8769 a 14.1732,14.1732 0 0 1 14.1733,14.1733 14.1732,14.1732 0 1 1 -14.1733,-14.1733 z" />
+  <text
+     id="text13"
+     y="277.57446"
+     x="190.93553"><tspan
+       id="tspan11"
+       fill="#1b1918"
+       font-size="12px"
+       font-family="Arial">&lt;else&gt;</tspan></text>
+  <text
+     id="text17"
+     y="614.08038"
+     x="212.17313"><tspan
+       id="tspan15"
+       fill="#1b1918"
+       font-size="12px"
+       font-family="Arial">&lt;else&gt;</tspan></text>
+  <text
+     id="text25"
+     y="276.32266"
+     x="357.37506"><tspan
+       id="tspan23"
+       fill="#1b1918"
+       font-size="12px"
+       font-family="Arial">&lt;jest zarejestrowany&gt;</tspan></text>
+  <text
+     id="text29"
+     y="612.89178"
+     x="357.4046"><tspan
+       id="tspan27"
+       fill="#1b1918"
+       font-size="12px"
+       font-family="Arial">&lt;są miejsca&gt;</tspan></text>
+  <path
+     d="m 94.2851,334.0256 v 41.1838 h 102.7941 v -41.1838 z"
+     style="fill:none;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     id="path31" />
+  <text
+     x="145.46828"
+     y="357.64972"
+     id="text35"><tspan
+       style="text-align:center;text-anchor:middle"
+       font-family="Arial"
+       font-size="12px"
+       fill="#1b1918"
+       id="tspan33">Rejestracja</tspan></text>
+  <path
+     d="m 433.2606,334.0256 v 41.1838 h 102.794 v -41.1838 z"
+     style="fill:none;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     id="path38" />
+  <text
+     x="455.41931"
+     y="357.64972"
+     id="text42"><tspan
+       font-family="Arial"
+       font-size="12px"
+       fill="#1b1918"
+       id="tspan40">Logowanie</tspan></text>
+  <path
+     d="m 260.4141,406.9579 v 41.1839 h 102.794 v -41.1839 z"
+     style="fill:none;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     id="path45" />
+  <text
+     x="311.51813"
+     y="423.4014"
+     id="text49"><tspan
+       style="text-align:center;text-anchor:middle"
+       y="423.4014"
+       x="311.51813"
+       id="tspan1038"
+       sodipodi:role="line">Przeglądanie</tspan><tspan
+       style="text-align:center;text-anchor:middle"
+       y="438.4014"
+       x="311.51813"
+       id="tspan1040"
+       sodipodi:role="line">oferty</tspan></text>
+  <path
+     d="m 260.4141,493.2737 v 41.1839 h 102.794 v -41.1839 z"
+     style="fill:none;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     id="path52" />
+  <text
+     x="311.96637"
+     y="509.53558"
+     id="text56"><tspan
+       style="text-align:center;text-anchor:middle"
+       y="509.53558"
+       x="311.96637"
+       id="tspan1045"
+       sodipodi:role="line">Zapisanie na</tspan><tspan
+       style="text-align:center;text-anchor:middle"
+       y="524.53558"
+       x="311.96637"
+       id="tspan1047"
+       sodipodi:role="line">wycieczkę</tspan></text>
+  <path
+     id="path66"
+     style="fill:none;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     d="M 311.811,241.902 271.7231,281.99 311.811,322.0779 351.899,281.99 Z" />
+  <path
+     id="path70"
+     style="fill:none;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     d="m 311.811,577.2352 -40.0879,40.088 40.0879,40.0879 40.088,-40.0879 z" />
+  <defs
+     id="defs75">
+    <marker
+       refY="5"
+       refX="1"
+       viewBox="0 0 10 10"
+       markerHeight="6"
+       markerWidth="8"
+       orient="auto"
+       markerUnits="strokeWidth"
+       id="endMarker1">
+      <polyline
+         id="polyline72"
+         fill="solid"
+         points="0,0 10,5 0,10 1,5" />
+    </marker>
+  </defs>
+  <path
+     id="path77"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker1)"
+     d="M 271.7232,282.03461 H 147.0036 v 49.17555" />
+  <defs
+     id="defs82">
+    <marker
+       refY="5"
+       refX="1"
+       viewBox="0 0 10 10"
+       markerHeight="6"
+       markerWidth="8"
+       orient="auto"
+       markerUnits="strokeWidth"
+       id="endMarker2">
+      <polyline
+         id="polyline79"
+         fill="solid"
+         points="0,0 10,5 0,10 1,5" />
+    </marker>
+  </defs>
+  <path
+     id="path84"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker2)"
+     d="m 351.8989,282.03086 h 132.3572 v 49.36631" />
+  <defs
+     id="defs89">
+    <marker
+       refY="5"
+       refX="1"
+       viewBox="0 0 10 10"
+       markerHeight="6"
+       markerWidth="8"
+       orient="auto"
+       markerUnits="strokeWidth"
+       id="endMarker3">
+      <polyline
+         id="polyline86"
+         fill="solid"
+         points="0,0 10,5 0,10 1,5" />
+    </marker>
+  </defs>
+  <path
+     id="path91"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker3)"
+     d="m 311.811,448.1419 v 42.5706" />
+  <defs
+     id="defs96">
+    <marker
+       refY="5"
+       refX="1"
+       viewBox="0 0 10 10"
+       markerHeight="6"
+       markerWidth="8"
+       orient="auto"
+       markerUnits="strokeWidth"
+       id="endMarker4">
+      <polyline
+         id="polyline93"
+         fill="solid"
+         points="0,0 10,5 0,10 1,5" />
+    </marker>
+  </defs>
+  <path
+     id="path98"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker4)"
+     d="m 311.811,534.55391 -3e-4,39.9071" />
+  <defs
+     id="defs103">
+    <marker
+       refY="5"
+       refX="1"
+       viewBox="0 0 10 10"
+       markerHeight="6"
+       markerWidth="8"
+       orient="auto"
+       markerUnits="strokeWidth"
+       id="endMarker5">
+      <polyline
+         id="polyline100"
+         fill="solid"
+         points="0,0 10,5 0,10 1,5" />
+    </marker>
+  </defs>
+  <path
+     id="path105"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker5)"
+     d="m 351.8989,617.35568 h 82.366 v 65.31728" />
+  <defs
+     id="defs110">
+    <marker
+       refY="5"
+       refX="1"
+       viewBox="0 0 10 10"
+       markerHeight="6"
+       markerWidth="8"
+       orient="auto"
+       markerUnits="strokeWidth"
+       id="endMarker6">
+      <polyline
+         id="polyline107"
+         fill="solid"
+         points="0,0 10,5 0,10 1,5" />
+    </marker>
+  </defs>
+  <path
+     id="path112"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker6)"
+     d="M 268.61131,617.3235 H 180.84207 V 423.5618 h 76.94409" />
+  <defs
+     id="defs117">
+    <marker
+       refY="5"
+       refX="1"
+       viewBox="0 0 10 10"
+       markerHeight="6"
+       markerWidth="8"
+       orient="auto"
+       markerUnits="strokeWidth"
+       id="endMarker7">
+      <polyline
+         id="polyline114"
+         fill="solid"
+         points="0,0 10,5 0,10 1,5" />
+    </marker>
+  </defs>
+  <path
+     id="path119"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker7)"
+     d="m 311.811,214.47022 -3e-4,24.79406" />
+  <path
+     d="m 260.4141,173.0503 v 41.1839 h 102.794 v -41.1839 z"
+     style="fill:none;stroke:#1b1918;stroke-width:0.216;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none"
+     id="path125" />
+  <text
+     x="311.65289"
+     y="189.35611"
+     id="text129"><tspan
+       style="text-align:center;text-anchor:middle"
+       y="189.35611"
+       x="311.65289"
+       id="tspan1021"
+       sodipodi:role="line">Otwarcie witryny</tspan><tspan
+       style="text-align:center;text-anchor:middle"
+       y="204.35611"
+       x="311.65289"
+       id="tspan1023"
+       sodipodi:role="line">internetowej</tspan></text>
+  <defs
+     id="defs135">
+    <marker
+       refY="5"
+       refX="1"
+       viewBox="0 0 10 10"
+       markerHeight="6"
+       markerWidth="8"
+       orient="auto"
+       markerUnits="strokeWidth"
+       id="endMarker8">
+      <polyline
+         id="polyline132"
+         fill="solid"
+         points="0,0 10,5 0,10 1,5" />
+    </marker>
+  </defs>
+  <path
+     id="path137"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker8)"
+     d="m 311.811,149.2234 v 21.04697" />
+  <text
+     id="text141"
+     y="114.93662"
+     x="299.23483"><tspan
+       id="tspan139"
+       fill="#1b1918"
+       font-size="10px"
+       font-family="Arial">Klient</tspan></text>
+  <defs
+     id="defs146">
+    <marker
+       refY="5"
+       refX="1"
+       viewBox="0 0 10 10"
+       markerHeight="6"
+       markerWidth="8"
+       orient="auto"
+       markerUnits="strokeWidth"
+       id="endMarker9">
+      <polyline
+         id="polyline143"
+         fill="solid"
+         points="0,0 10,5 0,10 1,5" />
+    </marker>
+  </defs>
+  <path
+     id="path148"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker9)"
+     d="m 484.64044,375.2096 v 52.3871 l -118.81069,-0.0471" />
+  <path
+     d="m 311.8111,361.5793 v 42.5706"
+     style="fill:none;stroke:#1b1918;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;marker-end:url(#endMarker3)"
+     id="path1085" />
+  <path
+     id="path1091"
+     d="M 311.8111,361.5793 H 197.52672"
+     style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+</svg>
