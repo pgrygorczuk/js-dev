@@ -1,0 +1,8 @@
+8.06.2021, 10:06:20> Server started.
+8.06.2021, 10:06:20> Database synced.
+8.06.2021, 10:06:27> Request received.
+8.06.2021, 10:54:06> Server started.
+8.06.2021, 10:54:06> Database synced.
+8.06.2021, 10:54:11> Request received.
+8.06.2021, 10:54:11> ::1 GET http://localhost:4700/?debug=1
+8.06.2021, 10:54:22> Request received.

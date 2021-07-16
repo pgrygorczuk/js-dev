@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "222e61d8-fe88-4612-954e-de736ebeb43e",
+		"name": "Node.exam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/install (run it at first)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/install",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"install"
+					]
+				},
+				"description": "Inserts example data into an empty database."
+			},
+			"response": []
+		},
+		{
+			"name": "/ (home)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/?debug=1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "debug",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Invites user if logged in, otherwise returns 'It works!'. As always you can add debug parameter to log additional data into a log.txt file."
+			},
+			"response": []
+		},
+		{
+			"name": "/ads (get all)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/ads",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ads"
+					]
+				},
+				"description": "Returns all Advertisments from database."
+			},
+			"response": []
+		},
+		{
+			"name": "/ads/show/:adId (get one)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/ads/show/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ads",
+						"show",
+						"1"
+					]
+				},
+				"description": "Returns single Advertisment with ID given as a parameter."
+			},
+			"response": []
+		},
+		{
+			"name": "/ads/search (search title)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"luneta\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/ads/search",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ads",
+						"search"
+					]
+				},
+				"description": "Finds advertisments by given criteria. Requires at least one column name (key) and phrase (value)."
+			},
+			"response": []
+		},
+		{
+			"name": "/ads/search (search desc)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"z soczewką\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/ads/search",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ads",
+						"search"
+					]
+				},
+				"description": "Another example of searching."
+			},
+			"response": []
+		},
+		{
+			"name": "/ads/search/price (search price)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/ads/search/price/100/1000",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ads",
+						"search",
+						"price",
+						"100",
+						"1000"
+					]
+				},
+				"description": "Searches advertisment with prices from given interval (e.g. 100-1000 PLN)."
+			},
+			"response": []
+		},
+		{
+			"name": "/categories (get all)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/categories?debug=1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"categories"
+					],
+					"query": [
+						{
+							"key": "debug",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Returns all categories from database."
+			},
+			"response": []
+		},
+		{
+			"name": "/heartbeat",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/heartbeat",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"heartbeat"
+					]
+				},
+				"description": "Returns current time."
+			},
+			"response": []
+		},
+		{
+			"name": "/ads (insert)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Example advertisment\",\r\n    \"description\": \"Opis przykładowego ogłoszenia. Opis przykładowego ogłoszenia. Opis przykładowego ogłoszenia. \",\r\n    \"price\": \"10.99\",\r\n    \"user_id\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/ads",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ads"
+					]
+				},
+				"description": "Inserts an Advertisment. Needs JSON encoded record. Title is required."
+			},
+			"response": []
+		},
+		{
+			"name": "/auth (sign in)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"secret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth"
+					]
+				},
+				"description": "Logs the user in. User account has to exist in a databse."
+			},
+			"response": []
+		},
+		{
+			"name": "/auth/logout (logout)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"secret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/auth/logout",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"auth",
+						"logout"
+					]
+				},
+				"description": "Logs the user out by destroing session entry."
+			},
+			"response": []
+		},
+		{
+			"name": "/ads/:adId (update)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Example advertisment - updated.\",\r\n    \"description\": \"Zaktualizowany opis. Zaktualizowany opis. Zaktualizowany opis. \",\r\n    \"price\": \"10.99\",\r\n    \"user_id\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/ads/3",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ads",
+						"3"
+					]
+				},
+				"description": "Updates an Advertisment with given ID."
+			},
+			"response": []
+		},
+		{
+			"name": "/ads/:adId (update author)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/ads/2",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ads",
+						"2"
+					]
+				},
+				"description": "Updates record. Here is en example of changing author of an advertisment."
+			},
+			"response": []
+		},
+		{
+			"name": "/ads/:adId (delete)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/ads/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ads",
+						"1"
+					]
+				},
+				"description": "Deletes Advertisment by given ID."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:4700"
+		}
+	]
+}
